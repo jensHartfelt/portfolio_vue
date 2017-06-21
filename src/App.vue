@@ -12,7 +12,10 @@
     </transition>
 
     <!-- Content -->
-    <transition :name="transitionMode" mode="out-in">
+    <transition 
+    :name="transitionMode" 
+    mode="out-in"
+    @enter="scroll">
       <router-view appear>    
       </router-view>
     </transition>
@@ -25,8 +28,19 @@ export default {
   name: 'app',
   data () {
     return {
-      spinnerActive: true,
       transitionMode: ""
+    }
+  },
+  methods: {
+    scroll: function () {
+      if (this.$route.name === "Portfolio") {
+        window.scrollTo(0,0);
+      }
+
+      if (this.$route.name === "Overview") {
+        var scrollY = this.$store.state.overviewScrollY;
+        window.scrollTo(0, scrollY);
+      }
     }
   },
   created() {
@@ -35,13 +49,16 @@ export default {
   watch: {
     '$route' (to, from) {
 
-      this.spinnerActive = true;
       // Sets transition mode based on flow.
       // Will work if there is only 2 "nested" layers of views
       if (to.name === "Overview") {
-        this.transitionMode = "backwards"
+        this.transitionMode = "backwards";
       } else {
         this.transitionMode = "forward"
+      }
+
+      if (from.name === "Overview") {
+        this.$store.state.overviewScrollY = window.scrollY;
       }
 
     }
@@ -61,7 +78,7 @@ export default {
 .backwards-enter-to,
 .backwards-leave-to,
 .backwards-leave {
-  transition: transform 160ms ease;
+  transition: transform 180ms ease;
 }
 
 

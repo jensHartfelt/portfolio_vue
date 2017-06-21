@@ -17,7 +17,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     posts: [],
-    spinnerActive: true
+    spinnerActive: true,
+    overviewScrollY: 0
   },
   mutations: {
     getPosts (state) {

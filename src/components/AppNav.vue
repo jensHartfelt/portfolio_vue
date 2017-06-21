@@ -20,8 +20,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.path.split('/').length)
-
     if (this.$route.path.split('/').length > 2) {
       this.showBackButton = true;
     } else {
