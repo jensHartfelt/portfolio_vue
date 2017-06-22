@@ -11,7 +11,6 @@ Vue.component('app-nav', AppNav)
 
 Vue.config.productionTip = false
 
-
 Vue.use(Vuex)
 
 const store = new Vuex.Store({

@@ -8,8 +8,8 @@
         v-for="(post, key) in posts"
         :id="post.id"
         >
-
-          <img class="u_m-b-sm" :src="post.acf.image.url">
+         
+          <img class="u_m-b-sm" :src="post.acf.image.sizes.medium_large">
           <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
           <p class="u_m-b-lg">{{post.acf.lead}}</p>
           <div class="seperator u_m-b-md"></div>
@@ -39,12 +39,13 @@ export default {
   },
   beforeCreate() {
     this.$emit('activateSpinner');
+    console.log(this.$store.state.posts)
   },
   created() {
     // var posts = [];
     // var self = this;
 
-
+    console.log(this.$store.state.posts)
 
     // axios.get('http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement')
     // .then(function (res) {
@@ -90,7 +91,7 @@ h1 {
 .portfolio-element {
   display: inline-block;
   width: 100%;
-  margin: 2% 1%;
+  margin: 2% 0;
   vertical-align: top;
   min-height: 100%;
   overflow: hidden;
