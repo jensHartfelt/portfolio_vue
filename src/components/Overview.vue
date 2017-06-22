@@ -8,7 +8,6 @@
         class="portfolio-element box u_p-md"
         v-for="(post, key) in posts"
         :id="post.id"
-        
         >
          
          <!-- Image -->
@@ -135,14 +134,16 @@ img {
 
 /* sticker style */
 /*.category {
+  font-size: 14px;
+  line-height: 20px;
   color: #666;
-  opacity: 1;
+  opacity: .9;
   position: absolute;
   top: 0;
   right: 0;
   padding: 8px 12px;
   background-color: #fff;
-  border-radius: 0 0 0 10px;
+  border-radius: 0 0 0 6px;
   box-shadow: 0 0 20px 0 rgba(0,0,0,0.4);
 }*/
 /* Casual style */
@@ -150,7 +151,7 @@ img {
   color: #777;
 }
 .category i {
-  font-size: 20px;
+  font-size: 18px;
   vertical-align: sub;
 }
 
