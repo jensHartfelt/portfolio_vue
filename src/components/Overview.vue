@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <div class="container">
 
       <!-- Posts -->
@@ -7,12 +8,30 @@
         class="portfolio-element box u_p-md"
         v-for="(post, key) in posts"
         :id="post.id"
+        
         >
          
+         <!-- Image -->
           <img class="u_m-b-sm" :src="post.acf.image.sizes.medium_large">
+
+          <!-- Category -->
+          <p class="category u_m-b-md"> 
+            <i class="material-icons">
+              {{getCategoryIcon(post.acf.category)}}
+            </i> 
+            {{post.acf.category}}
+          </p>
+
+          <!-- Title -->
           <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
+          
+          <!-- Description -->
           <p class="u_m-b-lg">{{post.acf.lead}}</p>
+
+          <!-- Seperator -->
           <div class="seperator u_m-b-md"></div>
+          
+          <!-- Action -->
           <router-link  
             :to="{ name: 'Portfolio', params: { id: post.id }}" 
             class="button">Læs mere
@@ -35,29 +54,30 @@ export default {
     }
   },
   methods: {
+    getCategoryIcon: function(category) {
+      switch (category) {
+        case "Hjemmeside": 
+          return "devices";
 
-  },
-  beforeCreate() {
-    this.$emit('activateSpinner');
-    console.log(this.$store.state.posts)
-  },
-  created() {
-    // var posts = [];
-    // var self = this;
+        case "Film": 
+          return "videocam";
 
-    console.log(this.$store.state.posts)
+        case "Animationsfilm": 
+          return "videocam";
 
-    // axios.get('http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement')
-    // .then(function (res) {
-    //   for (var i = 0; i < res.data.length; i++) {
-    //     self.posts.push(res.data[i])
-    //   }
-    //   self.$emit('deactivateSpinner');
-    // })
-    // .catch(function (err) {
-    //   console.log(err)
-    // })
-    
+        case "Spil": 
+          return "games";
+
+        case "Grafisk design": 
+          return "brush";
+          
+        case "Animation": 
+          return "transform";
+          
+        default: 
+          return "broken_image";
+      }
+    }
   }
 }
 </script>
@@ -95,6 +115,7 @@ h1 {
   vertical-align: top;
   min-height: 100%;
   overflow: hidden;
+  position: relative
 }
 
 .seperator {
@@ -110,6 +131,27 @@ img {
   margin-left: -15px;
   margin-top: -15px;
   width: calc(100% + 30px);
+}
+
+/* sticker style */
+/*.category {
+  color: #666;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 12px;
+  background-color: #fff;
+  border-radius: 0 0 0 10px;
+  box-shadow: 0 0 20px 0 rgba(0,0,0,0.4);
+}*/
+/* Casual style */
+.category {
+  color: #777;
+}
+.category i {
+  font-size: 20px;
+  vertical-align: sub;
 }
 
 .button {

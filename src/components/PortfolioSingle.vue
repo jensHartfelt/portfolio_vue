@@ -3,18 +3,23 @@
     <div class="container">
       <div class="single-element" v-for="post in posts">
 
-        <div class="u_p-sm box u_m-b-xl">
-          <img class="u_m-b-xs" :src="post.acf.image.url">
-          <p class="meta">{{post.acf.imageDescription}}</p>
-        </div>
+
         <h1 class="u_m-b-md">{{post.acf.title}}</h1>
         <p class="lead u_m-b-md">{{post.acf.lead}}</p>
         <p class="u_m-b-xl">{{post.acf.content}}</p>
 
+
+
+        <div class="u_p-sm box u_m-b-xl">
+          <img class="u_m-b-xs" :src="post.acf.image.url">
+          <p class="meta">{{post.acf.imageDescription}}</p>
+        </div>
+        
         <a target="blank" :href="post.acf.externalLinkUrl" class="button">
           <i class="material-icons u_m-r-xs">open_in_new</i>
           {{post.acf.externalLinkTitle}}
         </a>
+
       </div>
     </div>
   </div>
@@ -82,6 +87,7 @@ p.meta {
   width: 92%;
   margin: 0 auto;
   margin-bottom: 100px;
+  margin-top: 50px;
 }
 
 /*.image-container {
