@@ -10,7 +10,7 @@
         </p>
         <div class="actions">
           <p @click="scrollTo('portfolio')" class="button u_m-b-md">Portfolio</p>
-          <p @click="scrollTo('contact')" class="button outline">Om mig</p>
+          <p @click="scrollTo('contact')" class="button outline">Kontakt</p>
         </div>
       </div>
     </div>
