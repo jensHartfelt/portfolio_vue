@@ -201,6 +201,8 @@ img {
 .u_m-r-lg {margin-right: 24px;}
 .u_m-r-xl {margin-right: 32px;}
 
+.u_c-blue {color: #2C79E6 !important;}
+
 .loader {
   width: 100%;
   padding-top: 20vh;

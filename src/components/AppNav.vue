@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <transition name="fade">
-      <router-link appear v-if="showBackButton" :to="backButtonLocation" class="button"><i class="material-icons">chevron_left</i>Gå tilbage</router-link>
+      <router-link appear v-if="showBackButton" :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
     </transition>
     <p class="title">JENS HARTFELT</p>
   </div>
@@ -61,14 +61,14 @@ export default {
 }
 
 .button {
-  color: #333;
   font-size: 1em;
   line-height: 50px;
   vertical-align: bottom;
   text-decoration: none;
+  font-weight: 700;
 }
 .button:hover {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 .button i {
   color: #333;
