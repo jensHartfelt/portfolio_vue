@@ -8,17 +8,17 @@
         <p class="lead u_m-b-md">{{post.acf.lead}}</p>
         <p class="u_m-b-xl">{{post.acf.content}}</p>
 
+        <a target="blank" :href="post.acf.externalLinkUrl" class="button u_m-b-xl">
+          <i class="material-icons u_m-r-xs">open_in_new</i>
+          {{post.acf.externalLinkTitle}}
+        </a>
 
-
-        <div class="u_p-sm box u_m-b-xl">
+        <div class="u_p-sm box">
           <img class="u_m-b-xs" :src="post.acf.image.url">
           <p class="meta">{{post.acf.imageDescription}}</p>
         </div>
         
-        <a target="blank" :href="post.acf.externalLinkUrl" class="button">
-          <i class="material-icons u_m-r-xs">open_in_new</i>
-          {{post.acf.externalLinkTitle}}
-        </a>
+
 
       </div>
     </div>
@@ -86,8 +86,8 @@ p.meta {
   max-width: 800px;
   width: 92%;
   margin: 0 auto;
-  margin-bottom: 100px;
-  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 /*.image-container {
@@ -100,7 +100,31 @@ img {
   border-radius: 2px;
 }
 
-.button {
+ .button {
+  text-align: center;
+  margin: 0 4px 16px 4px;
+  border: 1px #2C79E6 solid;
+  background-color: #2C79E6;
+  display: inline-block;
+  width: auto;
+  padding: 13px 45px;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.button.outline {
+  color: #2C79E6;
+  background-color: rgba(0,0,0,0)
+}
+.button:hover {
+  opacity: 0.7;
+}
+
+/*.button {
   padding: 16px 38px;
   background-color: #333;
   color: #fff;
@@ -111,9 +135,5 @@ img {
 }
 .button:hover {
   background-color: #999;
-}
-img {
-
-
-}
+}*/
 </style>

@@ -102,11 +102,18 @@ export default {
   .landingpage {
     text-align: left;
   }
+  .landingpage p {
+    font-size: 24px;
+    hyphens: auto;
+  }
 }
 @media (max-width: 699px) {
   .landingpage {
     text-align: center;
   }  
+  .landingpage p {
+    font-size: 20px;
+  }
 }
 
 
@@ -124,9 +131,7 @@ export default {
   padding: 100px 20px;
   max-width: 600px;
 }
-.landingpage p {
-  font-size: 24px;
-}
+
 
 .landingpage .bold {
   font-weight: 700;
@@ -148,12 +153,18 @@ export default {
   background-color: #2C79E6;
   display: inline-block;
   width: auto;
-  padding: 13px 45px;
+  padding: 13px 42px;
   cursor: pointer;
   border-radius: 3px;
   color: #fff;
   font-weight: 400;
   font-size: 20px;
+}
+
+@media (max-width: 374px) {
+  .landingpage .button {
+    padding: 13px 28px;
+  }
 }
 
 .button.outline {
