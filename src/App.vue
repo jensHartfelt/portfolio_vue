@@ -100,15 +100,14 @@ export default {
 }
 
 
-
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
 * {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'PT Sans', sans-serif;
   line-height: 1.3;
   box-sizing: border-box;
-  color: $color1 !important;
 }
 
 /* fallback */
@@ -151,8 +150,10 @@ export default {
 
 body {
   font-size: 16px;
-  color: #333;
+  color: #676767;
   background-color: #f0f0f0;
+  -webkit-font-smoothing: antialiased; /* Makes fonts look pretty in chrome */
+  -moz-osx-font-smoothing: grayscale; /* Makes fonts look pretty in firefox */
 }
 
 h1 {

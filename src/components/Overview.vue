@@ -1,6 +1,19 @@
 <template>
   <div>
 
+    <div class="landingpage">
+      <div class="content">
+        <p class="intro u_m-b-xl">
+          Hej! Mit navn er <span class="bold">Jens Hartfelt</span> og jeg brænder for frontendudvikling og -design. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> med UI, UX og frontendudvikling mens jeg læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
+
+        </p>
+        <div class="actions">
+          <p class="button u_m-b-md">Portfolio</p>
+          <p class="button outline">Om mig</p>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
 
       <!-- Posts -->
@@ -8,6 +21,7 @@
         class="portfolio-element box u_p-md"
         v-for="(post, key) in posts"
         :id="post.id"
+        :key="key"
         >
          
          <!-- Image -->
@@ -83,13 +97,69 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/*.fade-enter-active, .fade-leave-active {
-  transition: all 200ms; 
+
+@media (min-width: 700px) {
+  .landingpage {
+    text-align: left;
+  }
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-  transform: translate3d(0,20px,0);
-}*/
+@media (max-width: 699px) {
+  .landingpage {
+    text-align: center;
+  }  
+}
+
+
+.landingpage {
+  width: 100vw;
+  margin: -60px 0 100px 0;
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landingpage .content {
+  padding: 100px 20px;
+  max-width: 600px;
+}
+.landingpage p {
+  font-size: 24px;
+}
+
+.landingpage .bold {
+  font-weight: 700;
+  color: #2C79E6;
+}
+
+.landingpage a.bold {
+    border-width: 0 0 1px 0;
+    border-color: #2C79E6;
+    border-style: dashed;
+    text-decoration: none;
+}
+
+
+.landingpage .button {
+  text-align: center;
+  margin: 0 4px 16px 4px;
+  border: 1px #2C79E6 solid;
+  background-color: #2C79E6;
+  display: inline-block;
+  width: auto;
+  padding: 13px 45px;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.button.outline {
+  color: #2C79E6;
+  background-color: rgba(0,0,0,0)
+}
 
 @media (min-width: 1000px) {
   .container {
@@ -159,7 +229,7 @@ img {
   padding: 8px 4px;
   text-decoration: none;
   font-weight: 700;
-  color: #333;
+  color: #2C79E6;
   font-size: 1.1em;
   width: 100%;
   display: block;
@@ -170,8 +240,9 @@ img {
   vertical-align: bottom;
   transition: margin 200ms ease;
 }
-.button:hover {
-  opacity: 0.5;
+.button:hover,
+a:hover {
+  opacity: 0.7; 
 }
 .button:hover>i {
   margin-right: -6px;
