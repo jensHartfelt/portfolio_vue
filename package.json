@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "TinyAnimate": "^0.4.0",
     "axios": "^0.16.2",
     "css-loader": "^0.28.4",
     "vue": "^2.3.3",

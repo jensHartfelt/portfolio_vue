@@ -4,12 +4,12 @@
     <app-nav></app-nav>
 
     <!-- Loader -->
-    <transition name="spinner-fade">
+    <!--<transition name="spinner-fade">
       <div v-if="this.$store.state.spinnerActive" class="loader">
           <div :class="{active: this.$store.state.spinnerActive}" class="spinner">
           </div>
       </div>
-    </transition>
+    </transition>-->
 
     <!-- Content -->
     <transition 
@@ -157,6 +157,9 @@ body {
 }
 
 h1 {
+  font-size: 2.5em;
+}
+h2 {
   font-size: 2em;
 }
 p {
@@ -177,11 +180,18 @@ img {
   width: 100%;
 }
 
+/* Padding and margin*/
 .u_p-xs {padding: 4px;}
 .u_p-sm {padding: 8px;}
 .u_p-md {padding: 16px;}
 .u_p-lg {padding: 24px;}
 .u_p-xl {padding: 32px;}
+
+.u_p-t-xs {padding-top: 4px;}
+.u_p-t-sm {padding-top: 8px;}
+.u_p-t-md {padding-top: 16px;}
+.u_p-t-lg {padding-top: 24px;}
+.u_p-t-xl {padding-top: 32px;}
 
 .u_m-b-xs {margin-bottom: 4px;}
 .u_m-b-sm {margin-bottom: 8px;}
@@ -201,7 +211,11 @@ img {
 .u_m-r-lg {margin-right: 24px;}
 .u_m-r-xl {margin-right: 32px;}
 
+/* Color */Y
 .u_c-blue {color: #2C79E6 !important;}
+
+/* Text */
+.u_t-c {text-align: center;}
 
 .loader {
   width: 100%;

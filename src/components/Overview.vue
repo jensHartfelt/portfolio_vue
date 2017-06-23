@@ -4,52 +4,57 @@
     <div class="landingpage">
       <div class="content">
         <p class="intro u_m-b-xl">
-          Hej! Mit navn er <span class="bold">Jens Hartfelt</span> og jeg brænder for frontendudvikling og -design. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> med UI, UX og frontendudvikling mens jeg læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
+          Hej! Mit navn er <span class="bold">Jens Hartfelt</span>
+          Jeg brænder for webudvikling og -design. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> med UI, UX og udvikling og læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
 
         </p>
         <div class="actions">
-          <p class="button u_m-b-md">Portfolio</p>
-          <p class="button outline">Om mig</p>
+          <p @click="scrollTo('portfolio')" class="button u_m-b-md">Portfolio</p>
+          <p @click="scrollTo('about')" class="button outline">Om mig</p>
         </div>
       </div>
     </div>
 
-    <div class="container">
 
+    <div class="container u_p-t-xl" id="portfolio">
       <!-- Posts -->
-      <div 
-        class="portfolio-element box u_p-md"
-        v-for="(post, key) in posts"
-        :id="post.id"
-        :key="key"
-        >
-         
-         <!-- Image -->
-          <img class="u_m-b-sm" :src="post.acf.image.sizes.medium_large">
-
-          <!-- Category -->
-          <p class="category u_m-b-md"> 
-            <i class="material-icons">
-              {{getCategoryIcon(post.acf.category)}}
-            </i> 
-            {{post.acf.category}}
-          </p>
-
-          <!-- Title -->
-          <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
+      <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
+      
+      <div class="columns-container">
+        <div 
+          class="portfolio-element box u_p-md"
+          v-for="(post, key) in posts"
+          :id="post.id"
+          :key="key"
+          >
           
-          <!-- Description -->
-          <p class="u_m-b-lg">{{post.acf.lead}}</p>
+          <!-- Image -->
+            <img class="u_m-b-sm" :src="post.acf.image.sizes.medium_large">
 
-          <!-- Seperator -->
-          <div class="seperator u_m-b-md"></div>
-          
-          <!-- Action -->
-          <router-link  
-            :to="{ name: 'Portfolio', params: { id: post.id }}" 
-            class="button">Læs mere
-          <i class="material-icons">arrow_forward</i>
-          </router-link>
+            <!-- Category -->
+            <p class="category u_m-b-md"> 
+              <i class="material-icons">
+                {{getCategoryIcon(post.acf.category)}}
+              </i> 
+              {{post.acf.category}}
+            </p>
+
+            <!-- Title -->
+            <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
+            
+            <!-- Description -->
+            <p class="u_m-b-lg">{{post.acf.lead}}</p>
+
+            <!-- Seperator -->
+            <div class="seperator u_m-b-md"></div>
+            
+            <!-- Action -->
+            <router-link  
+              :to="{ name: 'Portfolio', params: { id: post.id }}" 
+              class="button">Læs mere
+            <i class="material-icons">arrow_forward</i>
+            </router-link>
+        </div>
       </div>
     </div>
 
@@ -58,6 +63,7 @@
 
 <script>
 import axios from 'axios'
+import tinyAnimate from 'tinyAnimate'
 
 export default {
   name: 'overview',
@@ -67,6 +73,19 @@ export default {
     }
   },
   methods: {
+    scrollTo:function(arg) {
+      // Get position of portfolio section
+      var scrollEnd = document.getElementById("portfolio").offsetTop - 32;
+      var scrollStart = window.scrollY;
+    
+      tinyAnimate.animate(scrollStart, scrollEnd, 500, apply, "easeInOutCubic");
+
+      function apply(e) {
+        window.scrollTo(0, e);
+      }
+
+      console.log("scrollTo: " + arg)
+    },
     getCategoryIcon: function(category) {
       switch (category) {
         case "Hjemmeside": 
@@ -109,7 +128,7 @@ export default {
 }
 @media (max-width: 699px) {
   .landingpage {
-    text-align: center;
+    text-align: left;
   }  
   .landingpage p {
     font-size: 20px;
@@ -119,7 +138,7 @@ export default {
 
 .landingpage {
   width: 100vw;
-  margin: -60px 0 100px 0;
+  margin: -60px 0 0 0;
   min-height: 100vh;
   background-color: #fff;
   display: flex;
@@ -134,6 +153,13 @@ export default {
 
 
 .landingpage .bold {
+  font-weight: 700;
+  color: #2C79E6;
+}
+
+.landingpage span.bold {
+  display: block;
+  font-size: 2.5em;
   font-weight: 700;
   color: #2C79E6;
 }
@@ -173,18 +199,18 @@ export default {
 }
 
 @media (min-width: 1000px) {
-  .container {
+  .columns-container {
     columns: 3;
   }
 }
 
 @media (min-width: 700px) and (max-width: 999px) {
-  .container {
+  .columns-container {
     columns: 2;
   }
 }
 
-h1 {
+.portfolio-element h1 {
   font-size: 1.5em;
 }
 
