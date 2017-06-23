@@ -139,7 +139,7 @@ export default {
 /*  height: 100%;
   position: absolute;
   overflow: hidden;*/
-  padding: 70px 0 70px 0;
+  padding: 70px 0 0 0;
 }
 
 .container {
@@ -186,32 +186,44 @@ img {
 .u_p-md {padding: 16px;}
 .u_p-lg {padding: 24px;}
 .u_p-xl {padding: 32px;}
+.u_p-xxl {padding: 64px;}
 
 .u_p-t-xs {padding-top: 4px;}
 .u_p-t-sm {padding-top: 8px;}
 .u_p-t-md {padding-top: 16px;}
 .u_p-t-lg {padding-top: 24px;}
 .u_p-t-xl {padding-top: 32px;}
+.u_p-t-xxl {padding-top: 64px;}
 
 .u_m-b-xs {margin-bottom: 4px;}
 .u_m-b-sm {margin-bottom: 8px;}
 .u_m-b-md {margin-bottom: 16px;}
 .u_m-b-lg {margin-bottom: 24px;}
 .u_m-b-xl {margin-bottom: 32px;}
+.u_m-b-xxl {margin-bottom: 64px;}
+
+.u_m-t-xs {margin-top: 4px;}
+.u_m-t-sm {margin-top: 8px;}
+.u_m-t-md {margin-top: 16px;}
+.u_m-t-lg {margin-top: 24px;}
+.u_m-t-xl {margin-top: 32px;}
+.u_m-t-xxl {margin-top: 64px;}
 
 .u_m-l-xs {margin-left: 4px;}
 .u_m-l-sm {margin-left: 8px;}
 .u_m-l-md {margin-left: 16px;}
 .u_m-l-lg {margin-left: 24px;}
 .u_m-l-xl {margin-left: 32px;}
+.u_m-l-xxl {margin-left: 64px;}
 
 .u_m-r-xs {margin-right: 4px;}
 .u_m-r-sm {margin-right: 8px;}
 .u_m-r-md {margin-right: 16px;}
 .u_m-r-lg {margin-right: 24px;}
 .u_m-r-xl {margin-right: 32px;}
+.u_m-r-xxl {margin-right: 64px;}
 
-/* Color */Y
+/* Color */
 .u_c-blue {color: #2C79E6 !important;}
 
 /* Text */

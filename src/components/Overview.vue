@@ -1,26 +1,24 @@
 <template>
   <div>
 
-    <div class="landingpage">
+    <div class="section landingpage">
       <div class="content">
         <p class="intro u_m-b-xl">
           Hej! Mit navn er <span class="bold">Jens Hartfelt</span>
-          Jeg brænder for webudvikling og -design. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> med UI, UX og udvikling og læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
+          Jeg brænder for frontendudvikling og webdesign. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> som frontendudvikler og læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
 
         </p>
         <div class="actions">
           <p @click="scrollTo('portfolio')" class="button u_m-b-md">Portfolio</p>
-          <p @click="scrollTo('about')" class="button outline">Om mig</p>
+          <p @click="scrollTo('contact')" class="button outline">Om mig</p>
         </div>
       </div>
     </div>
 
-
     <div class="container u_p-t-xl" id="portfolio">
       <!-- Posts -->
       <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
-      
-      <div class="columns-container">
+      <div class="columns-container u_m-b-xl">
         <div 
           class="portfolio-element box u_p-md"
           v-for="(post, key) in posts"
@@ -58,6 +56,21 @@
       </div>
     </div>
 
+    <div class="section u_m-t-xxl" id="contact">
+      <h1 class="u_p-t-xxl u_t-c">Kontakt</h1>
+
+      <div class="content">
+
+        <p class="u_m-b-lg">Jeg er altid åben overfor nye projekter og muligheder, send en mail til:</p>
+        <a href="mailto:mail@jenshartfelt.dk" class="button"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
+        <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="" class="bold">Codepen.</a></p>
+        <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se mit github repositorie ud.</p>
+
+      </div>
+      
+      <p class="footer u_m-b-xxl">Jens Hartfelt 2017</p>
+
+    </div>
   </div>
 </template>
 
@@ -75,7 +88,13 @@ export default {
   methods: {
     scrollTo:function(arg) {
       // Get position of portfolio section
-      var scrollEnd = document.getElementById("portfolio").offsetTop - 32;
+
+      if (arg === "portfolio") {
+        var scrollEnd = document.getElementById("portfolio").offsetTop - 32;
+      } else if (arg === "contact") {
+        var scrollEnd = document.getElementById("contact").offsetTop - 32;
+      }
+      
       var scrollStart = window.scrollY;
     
       tinyAnimate.animate(scrollStart, scrollEnd, 500, apply, "easeInOutCubic");
@@ -118,53 +137,56 @@ export default {
 <style scoped>
 
 @media (min-width: 700px) {
-  .landingpage {
+  .section {
     text-align: left;
   }
-  .landingpage p {
+  .section p {
     font-size: 24px;
     hyphens: auto;
   }
 }
 @media (max-width: 699px) {
-  .landingpage {
+  .section {
     text-align: left;
   }  
-  .landingpage p {
+  .section p {
     font-size: 20px;
   }
 }
 
-
-.landingpage {
-  width: 100vw;
+.section.landingpage {
   margin: -60px 0 0 0;
   min-height: 100vh;
+}
+
+.section {
+  width: 100vw;
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
-.landingpage .content {
+.section .content {
   padding: 100px 20px;
   max-width: 600px;
 }
 
 
-.landingpage .bold {
+.section .bold {
   font-weight: 700;
   color: #2C79E6;
 }
 
-.landingpage span.bold {
+.section span.bold {
   display: block;
   font-size: 2.5em;
   font-weight: 700;
   color: #2C79E6;
 }
 
-.landingpage a.bold {
+.section a.bold {
     border-width: 0 0 1px 0;
     border-color: #2C79E6;
     border-style: dashed;
@@ -172,7 +194,7 @@ export default {
 }
 
 
-.landingpage .button {
+.section .button {
   text-align: center;
   margin: 0 4px 16px 4px;
   border: 1px #2C79E6 solid;
@@ -188,7 +210,7 @@ export default {
 }
 
 @media (max-width: 374px) {
-  .landingpage .button {
+  .section .button {
     padding: 13px 28px;
   }
 }
@@ -281,10 +303,15 @@ img {
 a:hover {
   opacity: 0.7; 
 }
-.button:hover>i {
+.portfolio-element .button:hover>i {
   margin-right: -6px;
   margin-left: 6px;
   transition: margin 200ms ease;
+}
+
+p.footer {
+  font-size: 1em;
+  opacity: 0.6;
 }
 
 /*.button {
