@@ -21,7 +21,6 @@ const store = new Vuex.Store({
   },
   mutations: {
     getPosts (state) {
-      state.count++
       axios.get('http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement')
       .then(function (res) {
         for (var i = 0; i < res.data.length; i++) {

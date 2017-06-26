@@ -17,6 +17,7 @@ export default new Router({
       name: 'Portfolio',
       component: PortfolioSingle,
     },
+    
   ],
   scrollBehavior (to, from, savedPosition) {
     // Scroll behavior on route load is always at the top. Add exceptions if needed
@@ -29,5 +30,6 @@ export default new Router({
       //return { x: 0, y: 0 }
     //}
   },
-  mode: "history"
+  mode: "history",
+  base: 'beta/10/'
 })

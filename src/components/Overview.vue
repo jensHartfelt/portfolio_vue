@@ -26,8 +26,10 @@
           :key="key"
           >
           
-          <!-- Image -->
-            <img class="u_m-b-sm" :src="post.acf.image.sizes.medium_large">
+            <!-- Image -->
+            <div class="image-container u_m-b-md">
+              <img :src="post.acf.image.sizes.medium_large">
+            </div>
 
             <!-- Category -->
             <p class="category u_m-b-md"> 
@@ -64,7 +66,7 @@
         <p class="u_m-b-lg">Jeg er altid åben overfor nye projekter og muligheder, send en mail til:</p>
         <a href="mailto:mail@jenshartfelt.dk" class="button"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
         <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="" class="bold">Codepen.</a></p>
-        <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se mit github repositorie ud.</p>
+        <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se den <a class="bold" href="">på github</a>.</p>
 
       </div>
       
@@ -196,7 +198,7 @@ export default {
 
 .section .button {
   text-align: center;
-  margin: 0 4px 16px 4px;
+  margin: 0 4px 16px 0px;
   border: 1px #2C79E6 solid;
   background-color: #2C79E6;
   display: inline-block;
@@ -232,6 +234,10 @@ export default {
   }
 }
 
+.container#portfolio {
+  min-height: 400px;
+}
+
 .portfolio-element h1 {
   font-size: 1.5em;
 }
@@ -255,27 +261,25 @@ export default {
 
 }
 
-img {
+.image-container {
+  margin-right: -15px;
   margin-left: -15px;
   margin-top: -15px;
-  width: calc(100% + 30px);
+  position: relative;
+  padding-bottom: 63.1510416667%; /* ratio of image height to width */
+  height: 0;
+  overflow: hidden;
+  background-color: #e1e1e1;
+ 
 }
 
-/* sticker style */
-/*.category {
-  font-size: 14px;
-  line-height: 20px;
-  color: #666;
-  opacity: .9;
+.image-container img {
   position: absolute;
   top: 0;
-  right: 0;
-  padding: 8px 12px;
-  background-color: #fff;
-  border-radius: 0 0 0 6px;
-  box-shadow: 0 0 20px 0 rgba(0,0,0,0.4);
-}*/
-/* Casual style */
+  left: 0;
+  width: 100%;
+}
+
 .category {
   color: #777;
 }

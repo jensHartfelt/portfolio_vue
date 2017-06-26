@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'portfolio-single',
@@ -35,28 +36,75 @@ export default {
     }
   },
   beforeCreate() {
-
+    console.log("PortfolioSingle.vue")
   },
   created() {
-    if (this.$store.state.posts.length === 0) {
-      this.$store.state.posts.length
-      console.log("there is no posts, make request")
-      this.manuallyShowPost();
-    }
-
     var postId = this.$router.currentRoute.params.id;
-    var curPost = this.$store.state.posts.filter(function(post){
-      return post.id === postId
-    })
-    this.posts = curPost;
-  },
-  methods: {
-    manuallyShowPost: function() {
-      var postId = this.$router.currentRoute.params.id;
+
+    if (this.$store.state.posts.length === 0) {
+      manuallyShowPost();
+    } else {
       var curPost = this.$store.state.posts.filter(function(post){
         return post.id === postId
       })
       this.posts = curPost;
+    }
+
+    var self = this;
+
+    function manuallyShowPost() {
+      var reqUrl = "http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement/" + postId + "/"
+      
+      axios.get(reqUrl)
+      .then(function (res) {
+        console.log("setting posts value")
+        self.posts[0] = res.data;
+        console.log("Posts[0] is: ", self.posts[0])
+      })
+      .catch(function (err) {
+        console.log(err)
+      })
+      
+    }
+  },
+  methods: {
+    manuallyShowPost: function() {
+
+      var postId = this.$router.currentRoute.params.id;
+      
+
+      // axios.get(reqUrl)
+      // .then(function (res) {
+      //   self.posts[0] = res.data;
+
+      // })
+      // .catch(function (err) {
+      //   console.log(err)
+      // })
+      // var postId = this.$router.currentRoute.params.id;
+      // var self = this;
+      
+      // // Interval hack to check if there are posts in array
+      // var interval = setInterval(function() {
+      //   // Condition for when there are posts in array
+      //   if (self.$store.state.posts.length > 0) {
+
+      //     getCurrentPost
+
+      //     // var curPost = self.$store.state.posts.filter(
+      //     //   function(post) {
+      //     //     console.log( "iterating" )
+      //     //     return post.id === postId
+      //     //   }
+      //     // )
+      //     // console.log(curPost);
+      //     // self.posts = curPost;
+
+      //     clearInterval(interval);
+      //   }
+      // }, 300);
+      
+      //console.log(curPost)
     }
   }
 }
