@@ -1,12 +1,20 @@
 <template>
-  <div class="nav-container">
-    <div class="container">
-      <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
-      <div class="navigation">
-        <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }">Portfolio</a>
-        <a @click="scrollTo('contact')"  :class="{ active : contactActive }">Kontakt</a>
+  <div class="nav-container" @click="toggleNestView">
+
+    <transition appear name="fade" mode="in-out">
+      <div v-if="atOverview" class="container">
+        <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
+        <div class="navigation">
+          <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }">Portfolio</a>
+          <a @click="scrollTo('contact')"  :class="{ active : contactActive }">Kontakt</a>
+        </div>
       </div>
-    </div>
+
+      <div v-else class="container">
+        <router-link  :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
+      </div>
+    </transition>
+
     <!--<transition name="fade">
       <router-link appear v-if="showBackButton" :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
     </transition>
@@ -23,7 +31,7 @@ export default {
   props: ['title'],
   data () {
     return {
-      showBackButton: false,
+      atOverview: true,
       backButtonLocation: "/",
       portfolioActive: false,
       contactActive: false
@@ -38,12 +46,15 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
+    toggleNestView: function() {
+      this.atOverview = !this.atOverview;
+    },
     handleScroll: function(e) {
-      console.log(
-        e.target.body.scrollTop +"\n"+
-        "portfolio: " + document.getElementById("portfolio").offsetTop +"\n"+
-        "contact: " + document.getElementById("contact").offsetTop
-      );
+      // console.log(
+      //   e.target.body.scrollTop +"\n"+
+      //   "portfolio: " + document.getElementById("portfolio").offsetTop +"\n"+
+      //   "contact: " + document.getElementById("contact").offsetTop
+      // );
       var curScroll = e.target.body.scrollTop + 50;
       var portfolioOffset = document.getElementById("portfolio").offsetTop;
       var contactOffset = document.getElementById("contact").offsetTop
@@ -62,6 +73,8 @@ export default {
       }
     },
     scrollTo: function(arg) {
+      var self = this;
+
       // Removes dynamic link highlighting on scroll, and manually set the clicked link to active
       window.removeEventListener('scroll', this.handleScroll);
 
@@ -84,8 +97,9 @@ export default {
       function apply(e) {
         window.scrollTo(0, e);
       }
+      
       // Re-enable the dynamic link highlighting on scroll
-      window.removeEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', self.handleScroll);
 
     },
   },
@@ -102,13 +116,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/*.fade-enter-active, .fade-leave-active {
-  transition: opacity 300ms; 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 3000ms; 
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
-  transition: opacity 300ms; 
-}*/
+  transition: opacity 3000ms; 
+}
 
 .nav-container {
   position: fixed;
