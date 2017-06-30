@@ -1,14 +1,22 @@
 <template>
   <div class="nav-container">
-    <transition name="fade">
+    <div class="container">
+      <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
+      <div class="navigation">
+        <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }">Portfolio</a>
+        <a @click="scrollTo('contact')"  :class="{ active : contactActive }">Kontakt</a>
+      </div>
+    </div>
+    <!--<transition name="fade">
       <router-link appear v-if="showBackButton" :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
     </transition>
-    <p class="title">JENS HARTFELT</p>
+    <p class="title">JENS HARTFELT</p>-->
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import tinyAnimate from 'tinyAnimate'
 
 export default {
   name: 'app-nav',
@@ -16,7 +24,9 @@ export default {
   data () {
     return {
       showBackButton: false,
-      backButtonLocation: "/"
+      backButtonLocation: "/",
+      portfolioActive: false,
+      contactActive: false
     }
   },
   created() {
@@ -25,6 +35,59 @@ export default {
     } else {
       this.showBackButton = false;
     }
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll: function(e) {
+      console.log(
+        e.target.body.scrollTop +"\n"+
+        "portfolio: " + document.getElementById("portfolio").offsetTop +"\n"+
+        "contact: " + document.getElementById("contact").offsetTop
+      );
+      var curScroll = e.target.body.scrollTop + 50;
+      var portfolioOffset = document.getElementById("portfolio").offsetTop;
+      var contactOffset = document.getElementById("contact").offsetTop
+
+      if (curScroll > portfolioOffset && curScroll < contactOffset) {
+        this.portfolioActive = true;
+      } else {
+        this.portfolioActive = false;        
+      }
+
+      if (curScroll > contactOffset || curScroll + 100 + window.innerHeight > document.body.offsetHeight ) {
+        this.contactActive = true;
+        this.portfolioActive = false;     
+      } else {
+        this.contactActive = false;
+      }
+    },
+    scrollTo: function(arg) {
+      // Removes dynamic link highlighting on scroll, and manually set the clicked link to active
+      window.removeEventListener('scroll', this.handleScroll);
+
+      // Decide which link to scroll to and to set active
+      if (arg === "portfolio") {
+        var scrollEnd = document.getElementById("portfolio").offsetTop - 32;
+        this.portfolioActive = true; 
+        this.contactActive = false; 
+      } else if (arg === "contact") {
+        var scrollEnd = document.getElementById("contact").offsetTop - 32;
+        this.portfolioActive = false; 
+        this.contactActive = true; 
+      } else if (arg === "top") {
+        var scrollEnd = 0;
+        this.portfolioActive = false; 
+        this.contactActive = false; 
+      }
+      var scrollStart = window.scrollY;
+      tinyAnimate.animate(scrollStart, scrollEnd, 500, apply, "easeInOutCubic");
+      function apply(e) {
+        window.scrollTo(0, e);
+      }
+      // Re-enable the dynamic link highlighting on scroll
+      window.removeEventListener('scroll', this.handleScroll);
+
+    },
   },
   watch: {
     '$route' (to, from) {
@@ -38,15 +101,14 @@ export default {
 }
 </script>
 
-<style scoped>
-.fade-enter-active, .fade-leave-active {
+<style scoped lang="scss">
+/*.fade-enter-active, .fade-leave-active {
   transition: opacity 300ms; 
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
-  
   transition: opacity 300ms; 
-}
+}*/
 
 .nav-container {
   position: fixed;
@@ -58,9 +120,52 @@ export default {
   border-width: 0 0 1px 0;
   z-index: 1;
   padding: 0 10px;
+
 }
 
-.button {
+.nav-container>.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-container a {
+  border-width: 0 0 4px 0;
+  border-style: solid;
+  border-color: rgba(0,0,0,0);
+  margin-top: 2px;
+  padding: 0 15px;
+  line-height: 44px;
+  display: inline-block;
+  transition: all 230ms ease;
+}
+
+.nav-container a:hover {
+  cursor: pointer;
+  color: #2C79E6;
+}
+
+.nav-container a.active {
+  border-color: #2C79E6;
+  color: #2C79E6;
+  transition: all 230ms ease;
+}
+
+.nav-container .title {
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 1.1em;
+  transition: all 230ms ease;
+}
+
+.nav-container .title:hover {
+  color: #2C79E6;
+  cursor: pointer;
+  transition: all 230ms ease;
+}
+
+/*.button {
   font-size: 1em;
   line-height: 50px;
   vertical-align: bottom;
@@ -83,5 +188,5 @@ export default {
   top: 0;
   line-height: 50px;
   font-weight: 700;
-}
+}*/
 </style>

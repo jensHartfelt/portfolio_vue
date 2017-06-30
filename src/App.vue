@@ -67,8 +67,7 @@ export default {
 
 </script>
 
-<style>
-
+<style lang="scss">
 
 .forward-enter,
 .forward-enter-to,
