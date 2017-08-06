@@ -15,20 +15,11 @@ export default new Router({
     {
       path: '/portfolio/:id',
       name: 'Portfolio',
-      component: PortfolioSingle,
-    },
-    
+      component: PortfolioSingle
+    }
   ],
   scrollBehavior (to, from, savedPosition) {
-    // Scroll behavior on route load is always at the top. Add exceptions if needed
-    // Overview scroll is controllet in app.js
-    
-    console.log("savedPosition: ", savedPosition)
 
-    // return { x: 0, y: 0 }
-    //if (to.name === "Portfolio") { 
-      //return { x: 0, y: 0 }
-    //}
   },
   mode: "history",
   base: 'beta/10/'

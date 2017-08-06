@@ -19,6 +19,32 @@
       <!-- Posts -->
       <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
       <div class="columns-container u_m-b-xl">
+
+        <div v-if="this.$store.state.spinnerActive" class="u_t-c spinner-container" :class="{active : this.$store.state.spinnerActive}">
+          <p>
+            <div class="mini-spinner">
+            </div>
+            Loading projects... 
+          </p>
+        </div>
+
+
+
+        <!--<div class="portfolio-element fake box u_p-md">
+            <div class="image-container u_m-b-md">
+            </div>
+            <div class="fake-title u_m-b-xl u_m-t-xl">
+            </div>
+            <div class="fake-content full-width u_m-b-sm">
+            </div>
+            <div class="fake-content full-width u_m-b-sm">
+            </div>
+            <div class="fake-content full-width u_m-b-sm">
+            </div>
+            <div class="fake-content normal-width">
+            </div>
+        </div>-->
+
         <div 
           class="portfolio-element box u_p-md"
           v-for="(post, key) in posts"
@@ -136,7 +162,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 
 @media (min-width: 700px) {
   .section {
@@ -235,12 +261,95 @@ export default {
 }
 
 .container#portfolio {
-  min-height: 400px;
+  min-height: 500px;
+  background-color: #f0f0f0;
+
 }
 
 .portfolio-element h1 {
   font-size: 1.5em;
 }
+
+
+
+
+
+
+
+
+/* Spinner loader */
+
+.spinner-container.active {
+  opacity: 1;
+  transition: opacity 400ms ease;
+}
+
+.spinner-container {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.mini-spinner {
+  width: 22px;
+  height: 22px;
+  border-radius: 100%;
+  border: 3px solid;
+  border-color: #2C79E6 #2C79E6 #2C79E6 rgba(0,0,0,0);
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 8px 2px 0;
+}
+.spinner-container.active .mini-spinner {
+  animation: mini-spinner infinite 900ms linear;
+}
+
+@keyframes mini-spinner {
+  0%   {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Fake it till you make it content  */
+.portfolio-element.fake * {
+  animation: loading 1000ms infinite ease-in-out;
+}
+
+@keyframes loading {
+  0%   {opacity: 0.4;}
+  90%  {opacity: 1;}
+  100% {opacity: 0.4;}
+}
+
+.portfolio-element.fake {
+  transform: translateX(100%);
+}
+
+.portfolio-element.fake .fake-title {
+  width: 75%;
+  height: 26px;
+  background-color: #e1e1e1;
+}
+
+.portfolio-element.fake .fake-content {
+  height: 8px;
+  background-color: #e1e1e1;
+}
+
+.portfolio-element.fake .fake-content.full-width {
+  width: 100%;
+}
+
+.portfolio-element.fake .fake-content.normal-width {
+  width: 70%;
+}
+
+
+
+
 
 .portfolio-element {
   display: inline-block;
@@ -269,8 +378,7 @@ export default {
   padding-bottom: 63.1510416667%; /* ratio of image height to width */
   height: 0;
   overflow: hidden;
-  background-color: #e1e1e1;
- 
+  background-color: #e1e1e1; 
 }
 
 .image-container img {

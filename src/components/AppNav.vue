@@ -1,15 +1,7 @@
 <template>
-  <div class="nav-container" @click="toggleNestView">
-
-
-    <transition name="bounce">
-      <p v-if="atOverview">one</p>
-      <p v-else>two</p>
-    </transition>
-
-
-    <!--<transition appear name="fade" mode="in-out">
-      <div v-if="atOverview" class="container">
+  <div class="nav-container">
+    <div class="nav-content">
+      <div  class="container overview" :class="{ hidden : !atOverview }">
         <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
         <div class="navigation">
           <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }">Portfolio</a>
@@ -17,15 +9,13 @@
         </div>
       </div>
 
-      <div v-else class="container">
-        <router-link  :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
+      <div  class="container portfolio back-button" :key="2">
+        <router-link :to="backButtonLocation" class="button u_c-blue">
+          <i class="material-icons u_c-blue">chevron_left</i>
+          Tilbage
+        </router-link>
       </div>
-    </transition>-->
-
-    <!--<transition name="fade">
-      <router-link appear v-if="showBackButton" :to="backButtonLocation" class="button u_c-blue"><i class="material-icons u_c-blue">chevron_left</i>Tilbage</router-link>
-    </transition>
-    <p class="title">JENS HARTFELT</p>-->
+    </div>
   </div>
 </template>
 
@@ -45,23 +35,23 @@ export default {
     }
   },
   created() {
-    if (this.$route.path.split('/').length > 2) {
-      this.showBackButton = true;
+    console.log(this.$route.name);
+
+    if (this.$route.name === "Overview") {
+      window.addEventListener('scroll', this.handleScroll);
     } else {
-      this.showBackButton = false;
+      window.removeEventListener('scroll', this.handleScroll);
     }
-    window.addEventListener('scroll', this.handleScroll);
+
+    // if (this.$route.path.split('/').length > 2) {
+    //   this.showBackButton = true;
+    // } else {
+    //   this.showBackButton = false;
+    // }
+    //window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
-    toggleNestView: function() {
-      this.atOverview = !this.atOverview;
-    },
     handleScroll: function(e) {
-      // console.log(
-      //   e.target.body.scrollTop +"\n"+
-      //   "portfolio: " + document.getElementById("portfolio").offsetTop +"\n"+
-      //   "contact: " + document.getElementById("contact").offsetTop
-      // );
       var curScroll = e.target.body.scrollTop + 50;
       var portfolioOffset = document.getElementById("portfolio").offsetTop;
       var contactOffset = document.getElementById("contact").offsetTop
@@ -105,47 +95,46 @@ export default {
         window.scrollTo(0, e);
       }
       
-      // Re-enable the dynamic link highlighting on scroll
-      window.addEventListener('scroll', self.handleScroll);
 
+      if (self.$route.name === "Overview") {
+        // Re-enable the dynamic link highlighting on scroll
+        window.addEventListener('scroll', self.handleScroll);    
+      }
     },
   },
   watch: {
     '$route' (to, from) {
-      if (to.fullPath.split('/').length > 2) {
-        this.showBackButton = true;
-      } else {
-        this.showBackButton = false;
+      console.log('Watching route in AppNav.vue. to.name: ',  to.name);
+
+      if (to.name === "Overview") {
+        this.atOverview = true;
+
+      } else if (to.name === "Portfolio")  {
+        window.removeEventListener('scroll', this.handleScroll);      
+        this.atOverview = false;
       }
+
+      console.log(this.atOverview)
+
+      
+      // if (to.fullPath.split('/').length > 2) {
+      //   this.atOverview = true;
+      // } else {
+      //   this.atOverview = false;
+      // }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
 .fade-enter-active, .fade-leave-active {
+  opacity: 0;
   transition: opacity 3000ms; 
 }
 .fade-enter, .fade-leave-to {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 3000ms; 
 }
 
@@ -158,11 +147,26 @@ export default {
   border: #e1e1e1 solid;
   border-width: 0 0 1px 0;
   z-index: 1;
-  padding: 0 10px;
-
 }
 
-.nav-container>.container {
+.nav-content {
+  height: 50px;
+  overflow: hidden;
+}
+
+
+.nav-container .container.overview {
+  margin-top: 0px;
+  opacity: 1;
+  transition: all 400ms ease-in-out;
+}
+.nav-container .container.overview.hidden {
+  margin-top: -50px;
+  opacity: 0;
+  transition: all 400ms ease-in-out;
+}
+
+.nav-container .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -202,6 +206,26 @@ export default {
   color: #2C79E6;
   cursor: pointer;
   transition: all 230ms ease;
+}
+
+.back-button.container:hover i {
+  transform: translateX(-5px);
+  transition: transform 240ms ease;
+}
+
+.back-button.container i {
+  vertical-align: middle;
+  margin-bottom: 3px;
+  margin-left: -5px;
+  margin-right: 3px;
+  transition: transform 240ms ease;
+}
+
+.back-button.container a {
+  text-decoration: none;
+  padding-left: 0px;
+  font-weight: 700;
+  width: 100%;
 }
 
 /*.button {

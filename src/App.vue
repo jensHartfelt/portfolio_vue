@@ -150,7 +150,7 @@ export default {
 body {
   font-size: 16px;
   color: #676767;
-  background-color: #f0f0f0;
+  // background-color: #f0f0f0;
   -webkit-font-smoothing: antialiased; /* Makes fonts look pretty in chrome */
   -moz-osx-font-smoothing: grayscale; /* Makes fonts look pretty in firefox */
 }

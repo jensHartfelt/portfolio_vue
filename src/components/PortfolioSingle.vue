@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="container">
-      <div class="single-element" v-for="post in posts">
-
+      <div class="single-element" v-for="(post, key) in posts" :key="key">
 
         <h1 class="u_m-b-md">{{post.acf.title}}</h1>
         <p class="lead u_m-b-md">{{post.acf.lead}}</p>
@@ -18,8 +17,6 @@
           <p class="meta">{{post.acf.imageDescription}}</p>
         </div>
         
-
-
       </div>
     </div>
   </div>
