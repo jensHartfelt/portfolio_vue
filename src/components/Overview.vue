@@ -286,41 +286,6 @@ export default {
 
 
 
-/* Spinner loader */
-
-.spinner-container.active {
-  opacity: 1;
-  transition: opacity 400ms ease;
-}
-
-.spinner-container {
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-
-.mini-spinner {
-  width: 22px;
-  height: 22px;
-  border-radius: 100%;
-  border: 3px solid;
-  border-color: #2C79E6 #2C79E6 #2C79E6 rgba(0,0,0,0);
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 8px 2px 0;
-}
-.spinner-container.active .mini-spinner {
-  animation: mini-spinner infinite 900ms linear;
-}
-
-@keyframes mini-spinner {
-  0%   {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 
 /* Fake it till you make it content  */
 .portfolio-element.fake * {

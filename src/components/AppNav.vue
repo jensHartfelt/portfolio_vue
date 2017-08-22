@@ -39,20 +39,14 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.name);
+    console.log("route name: " + this.$route.name);
 
     if (this.$route.name === "Overview") {
       window.addEventListener('scroll', this.handleScroll);
     } else {
       window.removeEventListener('scroll', this.handleScroll);
+      this.atOverview = false;
     }
-
-    // if (this.$route.path.split('/').length > 2) {
-    //   this.showBackButton = true;
-    // } else {
-    //   this.showBackButton = false;
-    // }
-    //window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
     handleScroll: function(e) {
@@ -99,7 +93,6 @@ export default {
         window.scrollTo(0, e);
       }
       
-
       if (self.$route.name === "Overview") {
         // Re-enable the dynamic link highlighting on scroll
         window.addEventListener('scroll', self.handleScroll);    
