@@ -15,82 +15,84 @@
       </div>
     </div>
 
-    <div class="container u_p-t-xl" id="portfolio">
-      <!-- Posts -->
-      <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
-      <div class="columns-container u_m-b-xl">
+    <div class="container-fluid u_p-t-xl u_p-b-xl" id="portfolio">
+      <div class="container">
+        <!-- Posts -->
+        <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
+        <div class="columns-container u_m-b-xl">
 
-        <div v-if="this.$store.state.spinnerActive" class="u_t-c spinner-container" :class="{active : this.$store.state.spinnerActive}">
-          <p>
-            <div class="mini-spinner">
-            </div>
-            Loading projects... 
-          </p>
-        </div>
-
-
-
-        <!--<div class="portfolio-element fake box u_p-md">
-            <div class="image-container u_m-b-md">
-            </div>
-            <div class="fake-title u_m-b-xl u_m-t-xl">
-            </div>
-            <div class="fake-content full-width u_m-b-sm">
-            </div>
-            <div class="fake-content full-width u_m-b-sm">
-            </div>
-            <div class="fake-content full-width u_m-b-sm">
-            </div>
-            <div class="fake-content normal-width">
-            </div>
-        </div>-->
-
-        <div 
-          class="portfolio-element box u_p-md"
-          v-for="(post, key) in posts"
-          :id="post.id"
-          :key="key"
-          >
-          
-            <!-- Image -->
-            <div class="image-container u_m-b-md">
-              <img :src="post.acf.image.sizes.medium_large">
-            </div>
-
-            <!-- Category -->
-            <p class="category u_m-b-md"> 
-              <i class="material-icons">
-                {{getCategoryIcon(post.acf.category)}}
-              </i> 
-              {{post.acf.category}}
+          <div v-if="this.$store.state.spinnerActive" class="u_t-c spinner-container" :class="{active : this.$store.state.spinnerActive}">
+            <p>
+              <div class="mini-spinner">
+              </div>
+              Loading projects... 
             </p>
+          </div>
 
-            <!-- Title -->
-            <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
-            
-            <!-- Description -->
-            <p class="u_m-b-lg">{{post.acf.lead}}</p>
 
-            <!-- Seperator -->
-            <div class="seperator u_m-b-md"></div>
+
+          <!--<div class="portfolio-element fake box u_p-md">
+              <div class="image-container u_m-b-md">
+              </div>
+              <div class="fake-title u_m-b-xl u_m-t-xl">
+              </div>
+              <div class="fake-content full-width u_m-b-sm">
+              </div>
+              <div class="fake-content full-width u_m-b-sm">
+              </div>
+              <div class="fake-content full-width u_m-b-sm">
+              </div>
+              <div class="fake-content normal-width">
+              </div>
+          </div>-->
+
+          <div 
+            class="portfolio-element box u_p-md"
+            v-for="(post, key) in posts"
+            :id="post.id"
+            :key="key"
+            >
             
-            <!-- Action -->
-            <router-link  
-              :to="{ name: 'Portfolio', params: { id: post.id }}" 
-              class="button">Læs mere
-            <i class="material-icons">arrow_forward</i>
-            </router-link>
+              <!-- Image -->
+              <div class="image-container u_m-b-md">
+                <img :src="post.acf.image.sizes.medium_large">
+              </div>
+
+              <!-- Category -->
+              <p class="category u_m-b-md"> 
+                <i class="material-icons">
+                  {{getCategoryIcon(post.acf.category)}}
+                </i> 
+                {{post.acf.category}}
+              </p>
+
+              <!-- Title -->
+              <h1 class="u_m-b-sm">{{post.acf.title}}</h1>
+              
+              <!-- Description -->
+              <p class="u_m-b-lg">{{post.acf.lead}}</p>
+
+              <!-- Seperator -->
+              <!-- <div class="seperator u_m-b-md"></div> -->
+              
+              <!-- Action -->
+              <router-link  
+                :to="{ name: 'Portfolio', params: { id: post.id }}" 
+                class="button">Læs mere
+              <i class="material-icons">arrow_forward</i>
+              </router-link>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="section u_m-t-xxl" id="contact">
-      <h1 class="u_p-t-xxl u_t-c">Kontakt</h1>
+    <div class="section u_m-t-xl" id="contact">
+      <h1 class="u_p-t-md u_t-c">Kontakt</h1>
 
       <div class="content">
 
         <p class="u_m-b-lg">Jeg er altid åben overfor nye projekter og muligheder, send en mail til:</p>
-        <a href="mailto:mail@jenshartfelt.dk" class="button"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
+        <a href="mailto:mail@jenshartfelt.dk" class="button full-width xl"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
         <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="" class="bold">Codepen.</a></p>
         <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se den <a class="bold" href="">på github</a>.</p>
 
@@ -161,7 +163,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
 @media (min-width: 700px) {
@@ -237,6 +238,14 @@ export default {
   font-size: 20px;
 }
 
+.section .button.xl {
+  font-size: 24px;
+}
+
+.section .button.full-width {
+  width: 100%;
+}
+
 @media (max-width: 374px) {
   .section .button {
     padding: 13px 28px;
@@ -260,9 +269,9 @@ export default {
   }
 }
 
-.container#portfolio {
+.container-fluid#portfolio {
   min-height: 500px;
-  background-color: #f0f0f0;
+  background-color: #f2f2f3;
 
 }
 
@@ -408,7 +417,8 @@ export default {
   text-align: right;
 }
 .button i {
-  vertical-align: bottom;
+  vertical-align: sub;
+  margin-right: 8px;
   transition: margin 200ms ease;
 }
 .button:hover,

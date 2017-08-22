@@ -1,20 +1,24 @@
 <template>
   <div class="nav-container">
     <div class="nav-content">
-      <div  class="container overview" :class="{ hidden : !atOverview }">
-        <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
-        <div class="navigation">
-          <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }">Portfolio</a>
-          <a @click="scrollTo('contact')"  :class="{ active : contactActive }">Kontakt</a>
-        </div>
-      </div>
 
-      <div  class="container portfolio back-button" :key="2">
-        <router-link :to="backButtonLocation" class="button u_c-blue">
-          <i class="material-icons u_c-blue">chevron_left</i>
-          Tilbage
-        </router-link>
-      </div>
+      <transition name="fade" mode="out-in">        
+        <div v-if="atOverview" class="container overview">
+          <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
+          <div class="navigation">
+            <a @click="scrollTo('portfolio')" :class="{ active : portfolioActive }" tabindex="1">Portfolio</a>
+            <a @click="scrollTo('contact')"  :class="{ active : contactActive }" tabindex="2">Kontakt</a>
+          </div>
+        </div>
+
+        <div v-else class="container portfolio back-button" :key="2">
+          <router-link :to="backButtonLocation" class="button u_c-blue">
+            <i class="material-icons u_c-blue">chevron_left</i>
+            Tilbage
+          </router-link>
+        </div>
+      </transition>
+
     </div>
   </div>
 </template>
@@ -129,14 +133,40 @@ export default {
 
 <style scoped lang="scss">
 
-.fade-enter-active, .fade-leave-active {
-  opacity: 0;
-  transition: opacity 3000ms; 
+// .fade-enter-active, .fade-leave-active {
+//   opacity: 0;
+//   transition: all 3000ms; 
+// }
+// // .fade-enter, .fade-leave-to {
+// //   opacity: 1;
+// //   transition: opacity 3000ms; 
+// // }
+
+
+.fade-enter {
+  transform: translate3d(0, -100%, 0);
 }
-.fade-enter, .fade-leave-to {
-  opacity: 1;
-  transition: opacity 3000ms; 
+
+.fade-enter-active   {
+  transition: all 180ms linear;
 }
+
+.fade-enter-to   {
+  transform: translate3d(0, 0%, 0);
+}
+
+.fade-leave {
+  transform: translate3d(0, 0%, 0);
+}
+
+.fade-leave-active   {
+  transition: all 180ms linear;
+}
+
+.fade-leave-to {
+  transform: translate3d(0, 100%, 0);
+}
+
 
 .nav-container {
   position: fixed;
@@ -153,7 +183,6 @@ export default {
   height: 50px;
   overflow: hidden;
 }
-
 
 .nav-container .container.overview {
   margin-top: 0px;

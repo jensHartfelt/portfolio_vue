@@ -69,6 +69,10 @@ export default {
 
 <style lang="scss">
 
+@import '/assets/css/common-style.scss';
+
+
+
 .forward-enter,
 .forward-enter-to,
 .forward-leave-to,
@@ -80,16 +84,15 @@ export default {
   transition: transform 180ms ease;
 }
 
+.forward-enter    {transform: translate3d(100%,0,0);}
+.forward-enter-to {transform: translate3d(0%,0,0);}
+.forward-leave-to {transform: translate3d(-100%,0,0);}
+.forward-leave    {transform: translate3d(0%,0,0);}
 
-.forward-enter    {transform: translateX(100%);}
-.forward-enter-to {transform: translateX(0%);}
-.forward-leave-to {transform: translateX(-100%);}
-.forward-leave    {transform: translateX(0%);}
-
-.backwards-enter    {transform: translateX(-100%);}
-.backwards-enter-to {transform: translateX(0%);}
-.backwards-leave-to {transform: translateX(100%);}
-.backwards-leave    {transform: translateX(0%);}
+.backwards-enter    {transform: translate3d(-100%,0,0);}
+.backwards-enter-to {transform: translate3d(0%,0,0);}
+.backwards-leave-to {transform: translate3d(100%,0,0);}
+.backwards-leave    {transform: translate3d(0%,0,0);}
 
 .spinner-fade-enter-active, .spinner-fade-leave-active {
   transition: opacity 100ms ease;
@@ -99,85 +102,9 @@ export default {
 }
 
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'PT Sans', sans-serif;
-  line-height: 1.3;
-  box-sizing: border-box;
-}
-
-/* fallback */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
-}
-
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  vertical-align: bottom;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-}
-
-#app {
-/*  height: 100%;
-  position: absolute;
-  overflow: hidden;*/
-  padding: 70px 0 0 0;
-}
-
-.container {
-  max-width: 1400px;
-  width: 90%;
-  margin: 0 auto;
-}
-
-body {
-  font-size: 16px;
-  color: #676767;
-  // background-color: #f0f0f0;
-  -webkit-font-smoothing: antialiased; /* Makes fonts look pretty in chrome */
-  -moz-osx-font-smoothing: grayscale; /* Makes fonts look pretty in firefox */
-}
-
-h1 {
-  font-size: 2.5em;
-}
-h2 {
-  font-size: 2em;
-}
-p {
-  font-weight: 200;
-}
-p.lead {
-  font-size: 1.3em;
-}
 
 
-.box {
-  border: #e1e1e1 1px solid;
-  border-radius: 2px;
-  background-color: #fff;
-}
 
-img {
-  width: 100%;
-}
 
 /* Padding and margin*/
 .u_p-xs {padding: 4px;}
@@ -193,6 +120,13 @@ img {
 .u_p-t-lg {padding-top: 24px;}
 .u_p-t-xl {padding-top: 32px;}
 .u_p-t-xxl {padding-top: 64px;}
+
+.u_p-b-xs {padding-bottom: 4px;}
+.u_p-b-sm {padding-bottom: 8px;}
+.u_p-b-md {padding-bottom: 16px;}
+.u_p-b-lg {padding-bottom: 24px;}
+.u_p-b-xl {padding-bottom: 32px;}
+.u_p-b-xxl {padding-bottom: 64px;}
 
 .u_m-b-xs {margin-bottom: 4px;}
 .u_m-b-sm {margin-bottom: 8px;}
@@ -228,15 +162,12 @@ img {
 /* Text */
 .u_t-c {text-align: center;}
 
-.loader {
-  width: 100%;
-  padding-top: 20vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-}
 
+.spinner-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .spinner {
   width: 56px;
@@ -244,7 +175,6 @@ img {
   border: 6px solid;
   border-color: #333  #333 #333 rgba(0,0,0,0);
   border-radius: 100%;
-  margin: 0 auto;
 }
 
 .spinner.active {
