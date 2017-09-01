@@ -22,5 +22,5 @@ export default new Router({
 
   },
   mode: "history",
-  base: 'beta/10/'
+  base: ''
 })
