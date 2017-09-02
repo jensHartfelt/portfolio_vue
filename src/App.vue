@@ -69,9 +69,8 @@ export default {
 
 <style lang="scss">
 
-@import '/assets/css/common-style.scss';
-
-
+@import 'assets/css/material-icons.scss';
+@import 'assets/css/common-style.scss';
 
 .forward-enter,
 .forward-enter-to,
