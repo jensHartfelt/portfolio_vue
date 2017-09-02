@@ -21,7 +21,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     getPosts (state) {
-      axios.get('http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement')
+      axios.get('//jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement')
       .then(function (res) {
         for (var i = 0; i < res.data.length; i++) {
           state.posts.push(res.data[i])
