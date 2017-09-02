@@ -137,11 +137,13 @@ export default {
 
 
 .fade-enter {
-  transform: translate3d(0, -100%, 0);
+  transform: translate3d(100%, 0, 0);
 }
 
-.fade-enter-active   {
-  transition: all 180ms linear;
+.fade-enter-active,
+.fade-leave-active   {
+  transition: all 400ms ease;
+ // transition: all 400ms ease;
 }
 
 .fade-enter-to   {
@@ -152,12 +154,8 @@ export default {
   transform: translate3d(0, 0%, 0);
 }
 
-.fade-leave-active   {
-  transition: all 180ms linear;
-}
-
 .fade-leave-to {
-  transform: translate3d(0, 100%, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 
 

@@ -80,7 +80,7 @@ export default {
 .backwards-enter-to,
 .backwards-leave-to,
 .backwards-leave {
-  transition: transform 180ms ease;
+  transition: transform $transition-medium;
 }
 
 .forward-enter    {transform: translate3d(100%,0,0);}
