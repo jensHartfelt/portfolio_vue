@@ -55,7 +55,18 @@
             
               <!-- Image -->
               <div class="image-container u_m-b-md">
-                <img :src="post.acf.image.sizes.medium_large">
+                <img 
+                  :srcset="
+                    post.acf.image.sizes.thumbnail+' 150w,'+
+                    post.acf.image.sizes.medium+' 300w,'+
+                    post.acf.image.sizes.medium_large+' 768w,'+
+                    post.acf.image.sizes.large+' 1024w'"
+                  sizes="
+                    (min-width: 360px) 768px,
+                    (min-width: 300px) 300px,
+                    150px"
+                  :src="post.acf.image.sizes.medium_large"
+                >
               </div>
 
               <!-- Category -->
@@ -71,9 +82,6 @@
               
               <!-- Description -->
               <p class="u_m-b-lg">{{post.acf.lead}}</p>
-
-              <!-- Seperator -->
-              <!-- <div class="seperator u_m-b-md"></div> -->
               
               <!-- Action -->
               <router-link  
