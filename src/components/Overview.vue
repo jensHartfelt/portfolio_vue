@@ -94,7 +94,7 @@
       </div>
     </div>
 
-    <div class="section u_m-t-xl" id="contact">
+    <div class="section u_p-t-xl" id="contact">
       <h1 class="u_p-t-md u_t-c">Kontakt</h1>
 
       <div class="content">
@@ -174,6 +174,7 @@ export default {
 <style scoped lang="scss">
 
 @import '../assets/css/material-icons.scss';
+@import '../assets/css/common-style.scss';
 
 
 @media (min-width: 700px) {
@@ -195,13 +196,12 @@ export default {
 }
 
 .section.landingpage {
-  margin: -60px 0 0 0;
   min-height: 100vh;
 }
 
 .section {
   width: 100vw;
-  background-color: #fff;
+  background-color: $white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,19 +216,19 @@ export default {
 
 .section .bold {
   font-weight: 700;
-  color: #2C79E6;
+  color: $blue-primary;
 }
 
 .section span.bold {
   display: block;
   font-size: 2.5em;
   font-weight: 700;
-  color: #2C79E6;
+  color: $blue-primary;
 }
 
 .section a.bold {
     border-width: 0 0 1px 0;
-    border-color: #2C79E6;
+    border-color: $blue-primary;
     border-style: dashed;
     text-decoration: none;
 }
@@ -237,14 +237,14 @@ export default {
 .section .button {
   text-align: center;
   margin: 0 4px 16px 0px;
-  border: 1px #2C79E6 solid;
-  background-color: #2C79E6;
+  border: 1px $blue-primary solid;
+  background-color: $blue-primary;
   display: inline-block;
   width: auto;
   padding: 13px 42px;
   cursor: pointer;
   border-radius: 3px;
-  color: #fff;
+  color: $white;
   font-weight: 400;
   font-size: 20px;
 }
@@ -264,7 +264,7 @@ export default {
 }
 
 .button.outline {
-  color: #2C79E6;
+  color: $blue-primary;
   background-color: rgba(0,0,0,0)
 }
 
@@ -282,7 +282,7 @@ export default {
 
 .container-fluid#portfolio {
   min-height: 500px;
-  background-color: #f2f2f3;
+  background-color: $ultra-light-grey;
 
 }
 
@@ -294,43 +294,6 @@ export default {
 
 
 
-
-
-
-
-/* Fake it till you make it content  */
-.portfolio-element.fake * {
-  animation: loading 1000ms infinite ease-in-out;
-}
-
-@keyframes loading {
-  0%   {opacity: 0.4;}
-  90%  {opacity: 1;}
-  100% {opacity: 0.4;}
-}
-
-.portfolio-element.fake {
-  transform: translateX(100%);
-}
-
-.portfolio-element.fake .fake-title {
-  width: 75%;
-  height: 26px;
-  background-color: #e1e1e1;
-}
-
-.portfolio-element.fake .fake-content {
-  height: 8px;
-  background-color: #e1e1e1;
-}
-
-.portfolio-element.fake .fake-content.full-width {
-  width: 100%;
-}
-
-.portfolio-element.fake .fake-content.normal-width {
-  width: 70%;
-}
 
 
 
@@ -347,7 +310,7 @@ export default {
 }
 
 .seperator {
-  background-color: #e1e1e1;
+  background-color: $light-grey;
   height: 1px;
   margin-left: -16px;
   margin-right: -16px;
@@ -356,7 +319,7 @@ export default {
 }
 
 .category {
-  color: #777;
+  color: $grey;
 }
 .category i {
   font-size: 18px;
@@ -367,7 +330,7 @@ export default {
   padding: 8px 4px;
   text-decoration: none;
   font-weight: 700;
-  color: #2C79E6;
+  color: $blue-primary;
   font-size: 1.1em;
   width: 100%;
   display: block;

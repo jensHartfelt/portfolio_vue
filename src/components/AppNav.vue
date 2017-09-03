@@ -130,6 +130,7 @@ export default {
 <style scoped lang="scss">
 
 @import '../assets/css/material-icons.scss';
+@import '../assets/css/common-style.scss';
 
 
 // .fade-enter-active, .fade-leave-active {
@@ -170,8 +171,8 @@ export default {
   top: 0;
   width: 100vw;
   height: 50px;
-  background-color: #fff;
-  border: #e1e1e1 solid;
+  background-color: $white;
+  border: $light-grey solid;
   border-width: 0 0 1px 0;
   z-index: 1;
 }
@@ -212,12 +213,12 @@ export default {
 
 .nav-container a:hover {
   cursor: pointer;
-  color: #2C79E6;
+  color: $blue-primary;
 }
 
 .nav-container a.active {
-  border-color: #2C79E6;
-  color: #2C79E6;
+  border-color: $blue-primary;
+  color: $blue-primary;
   transition: all 230ms ease;
 }
 
@@ -229,7 +230,7 @@ export default {
 }
 
 .nav-container .title:hover {
-  color: #2C79E6;
+  color: $blue-primary;
   cursor: pointer;
   transition: all 230ms ease;
 }

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="!pageIsReady" class="u_t-c spinner-container u_m-t-xxl" :class="{active : !pageIsReady}">
+  <div class="base u_p-t-xxl">
+    <div v-if="!pageIsReady" class="u_t-c spinner-container u_p-t-xxl" :class="{active : !pageIsReady}">
       <p>
         <div class="mini-spinner">
         </div>
@@ -9,10 +9,24 @@
     </div>
 
     <div v-if="pageIsReady" class="container">
-      <div class="single-element u_m-b-xxl" v-for="(post, key) in posts" :key="key">
+      <div class="single-element u_p-b-xxl" v-for="(post, key) in posts" :key="key">
+
+        <h1 class="u_m-b-md u_m-t-lg">{{post.acf.title}}</h1>
+
+        <div class="meta u_m-b-xl">
+          <p class="u_m-r-lg">
+            <i class="material-icons">date_range</i>
+            22. marts 2017
+          </p>
+          <p>
+            <i class="material-icons">crop</i>
+            Animation
+          </p>
+        </div>
+
 
         <!-- Image -->
-        <div class="image-container u_m-b-xl">
+        <div class="image-container u_m-t-lg u_m-b-xl">
           <img 
             :srcset="
               post.acf.image.sizes.thumbnail+' 150w,'+
@@ -27,11 +41,11 @@
           >
         </div>
 
-        <h1 class="u_m-b-md">{{post.acf.title}}</h1>
+
         <p class="lead u_m-b-md">{{post.acf.lead}}</p>
         <p class="u_m-b-xl">{{post.acf.content}}</p>
 
-        <a target="blank" :href="post.acf.externalLinkUrl" class="button u_m-b-xxl">
+        <a target="blank" :href="post.acf.externalLinkUrl" class="button u_p-b-xxl">
           <i class="material-icons u_m-r-xs">open_in_new</i>
           {{post.acf.externalLinkTitle}}
         </a>
@@ -65,15 +79,10 @@ export default {
     // If there are already posts in the store (Which means you clicked a link at the overview)
     // just get the postId from the params and display only that post
     } else {
-      console.log( this.$store.state.posts );
       var curPost = this.$store.state.posts.filter(function(post){
-        return post.id === postId
+        return post.id === postId;
       })
-
-      console.log("curPost: ", curPost);
-      console.log("self.posts, before pushing: ", self.posts);
       self.posts.push(curPost[0]);
-      console.log("self.posts, after pushing: ", self.posts);
       this.pageIsReady = true;
     }
 
@@ -93,7 +102,6 @@ export default {
   methods: {
     manuallyShowPost: function(postId) {
       var reqUrl = "http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement/"+postId+"/";
-      console.log("manuallyShowPost from: "+reqUrl);
       axios.get(reqUrl)
       .then( (res) => {
         this.posts.push(res.data);
@@ -113,44 +121,8 @@ export default {
 @import '../assets/css/common-style.scss';
 @import '../assets/css/material-icons.scss';
 
-
-// @font-face {
-//   font-family: 'Material Icons';
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url('../assets/fonts/MaterialIcons-Regular.eot') format('eot');
-//   src: url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
-//   src: url('../assets/fonts/MaterialIcons-Regular.woff') format('woff');
-//   src: url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2');
-// }
-// .material-icons {
-//   font-family: 'Material Icons';
-//   font-weight: normal;
-//   font-style: normal;
-//   font-size: 110%;
-//   line-height: 1;
-//   letter-spacing: normal;
-//   text-transform: none;
-//   display: inline-block;
-//   white-space: nowrap;
-//   word-wrap: normal;
-//   direction: ltr;
-//   -webkit-font-feature-settings: 'liga';
-//   -webkit-font-smoothing: antialiased;
-//   vertical-align: sub;
-//   /* Support for all WebKit browsers. */
-//   -webkit-font-smoothing: antialiased;
-//   /* Support for Safari and Chrome. */
-//   text-rendering: optimizeLegibility;
-//   /* Support for Firefox. */
-//   -moz-osx-font-smoothing: grayscale;
-//   /* Support for IE. */
-//   font-feature-settings: 'liga';
-// }
-
-
-h1 {
-  font-size: 3em;
+.base {
+  background-color: $ultra-light-grey;
 }
 
 .lead {
@@ -162,17 +134,17 @@ p {
   line-height: 1.4;
 }
 
-p.meta {
+.meta p {
+  display: inline-block;
   font-size: 0.9em;
-  opacity: 0.75;
+  color: $grey;
+
 }
 
 .container {
   max-width: 800px;
   width: 92%;
   margin: 0 auto;
-  margin-bottom: 20px;
-  margin-top: 10px;
 }
 
 /*.image-container {
@@ -196,7 +168,6 @@ p.meta {
   .image-container {
     margin-left: -5%;
     margin-right: -5%;
-    margin-top: -30px;
   }
   
 }
@@ -204,21 +175,21 @@ p.meta {
  .button {
   text-align: center;
   margin: 0 4px 16px 4px;
-  border: 1px #2C79E6 solid;
-  background-color: #2C79E6;
+  border: 1px $blue-primary solid;
+  background-color: $blue-primary;
   display: inline-block;
   width: auto;
   padding: 13px 45px;
   cursor: pointer;
   border-radius: 3px;
-  color: #fff;
+  color: $white;
   font-weight: 400;
   font-size: 20px;
   text-decoration: none;
 }
 
 .button.outline {
-  color: #2C79E6;
+  color: $blue-primary;
   background-color: rgba(0,0,0,0)
 }
 .button:hover {
