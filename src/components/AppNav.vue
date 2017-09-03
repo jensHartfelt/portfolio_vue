@@ -1,6 +1,5 @@
 <template>
   <div class="nav-container">
-    <div class="nav-content">
 
       <transition 
         :name="this.$store.state.transitionMode" 
@@ -22,7 +21,6 @@
         </div>
       </transition>
 
-    </div>
   </div>
 </template>
 
@@ -42,16 +40,20 @@ export default {
     }
   },
   created() {
-    console.log("route name: " + this.$route.name);
-
-    if (this.$route.name === "Overview") {
-      window.addEventListener('scroll', this.handleScroll);
-    } else {
-      window.removeEventListener('scroll', this.handleScroll);
-      this.atOverview = false;
-    }
+    this.checkIfScrollHandleIsNeeded();
+  },
+  updated() {
+    this.checkIfScrollHandleIsNeeded();
   },
   methods: {
+    checkIfScrollHandleIsNeeded: function() {
+      if (this.$route.name === "Overview") {
+        window.addEventListener('scroll', this.handleScroll);
+      } else {
+        window.removeEventListener('scroll', this.handleScroll);
+        this.atOverview = false;
+      } 
+    },
     handleScroll: function(e) {
       var curScroll = e.target.body.scrollTop + 50;
       var portfolioOffset = document.getElementById("portfolio").offsetTop;
@@ -133,72 +135,38 @@ export default {
 @import '../assets/css/common-style.scss';
 
 
-// .fade-enter-active, .fade-leave-active {
-//   opacity: 0;
-//   transition: all 3000ms; 
-// }
-// // .fade-enter, .fade-leave-to {
-// //   opacity: 1;
-// //   transition: opacity 3000ms; 
-// // }
-
-
-.fade-enter {
-  transform: translate3d(100%, 0, 0);
-}
-
-.fade-enter-active,
-.fade-leave-active   {
-  transition: all 400ms ease;
- // transition: all 400ms ease;
-}
-
-.fade-enter-to   {
-  transform: translate3d(0, 0%, 0);
-}
-
-.fade-leave {
-  transform: translate3d(0, 0%, 0);
-}
-
-.fade-leave-to {
-  transform: translate3d(-100%, 0, 0);
-}
-
 
 .nav-container {
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 50px;
+  max-height: 1000px;
   background-color: $white;
   border: $light-grey solid;
   border-width: 0 0 1px 0;
   z-index: 1;
 }
 
-.nav-content {
-  height: 50px;
-  overflow: hidden;
+
+@media (min-width: 401px) {
+  .nav-container .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .nav-container .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav-container .title {
+    margin-bottom: -15px;
+  }
 }
 
-// .nav-container .container.overview {
-//   margin-top: 0px;
-//   opacity: 1;
-//   transition: all 400ms ease-in-out;
-// }
-// .nav-container .container.overview.hidden {
-//   margin-top: -50px;
-//   opacity: 0;
-//   transition: all 400ms ease-in-out;
-// }
-
-.nav-container .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
 
 .nav-container a {
   border-width: 0 0 4px 0;
@@ -208,7 +176,6 @@ export default {
   padding: 0 15px;
   line-height: 44px;
   display: inline-block;
-  transition: all 230ms ease;
 }
 
 .nav-container a:hover {
@@ -219,20 +186,17 @@ export default {
 .nav-container a.active {
   border-color: $blue-primary;
   color: $blue-primary;
-  transition: all 230ms ease;
 }
 
 .nav-container .title {
   line-height: 50px;
   font-weight: 700;
   font-size: 1.1em;
-  transition: all 230ms ease;
 }
 
 .nav-container .title:hover {
   color: $blue-primary;
   cursor: pointer;
-  transition: all 230ms ease;
 }
 
 .back-button.container:hover i {

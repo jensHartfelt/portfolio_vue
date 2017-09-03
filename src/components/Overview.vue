@@ -140,8 +140,6 @@ export default {
       function apply(e) {
         window.scrollTo(0, e);
       }
-
-      console.log("scrollTo: " + arg)
     },
     getCategoryIcon: function(category) {
       switch (category) {

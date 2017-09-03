@@ -56,7 +56,6 @@ export default {
       if (from.name === "Overview") {
         this.$store.state.overviewScrollY = window.scrollY;
       }
-
     }
   }
 }
