@@ -69,7 +69,7 @@ export default {
 
 <style lang="scss">
 
-@import 'assets/css/material-icons.scss';
+//@import 'assets/css/material-icons.scss';
 @import 'assets/css/common-style.scss';
 
 .forward-enter,
@@ -80,17 +80,17 @@ export default {
 .backwards-enter-to,
 .backwards-leave-to,
 .backwards-leave {
-  transition: transform $transition-medium;
+  transition: all $transition-medium;
 }
 
-.forward-enter    {transform: translate3d(100%,0,0);}
-.forward-enter-to {transform: translate3d(0%,0,0);}
-.forward-leave-to {transform: translate3d(-100%,0,0);}
+.forward-enter    {transform: translate3d(100%,0,0); opacity: 0;}
+.forward-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
+.forward-leave-to {transform: translate3d(-50%,0,0); opacity: 0;}
 .forward-leave    {transform: translate3d(0%,0,0);}
 
-.backwards-enter    {transform: translate3d(-100%,0,0);}
-.backwards-enter-to {transform: translate3d(0%,0,0);}
-.backwards-leave-to {transform: translate3d(100%,0,0);}
+.backwards-enter    {transform: translate3d(-100%,0,0); opacity: 0;}
+.backwards-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
+.backwards-leave-to {transform: translate3d(50%,0,0); opacity: 0;}
 .backwards-leave    {transform: translate3d(0%,0,0);}
 
 

@@ -100,6 +100,42 @@ export default {
 <style scoped lang="scss">
 
 @import '../assets/css/common-style.scss';
+@import '../assets/css/material-icons.scss';
+
+
+// @font-face {
+//   font-family: 'Material Icons';
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url('../assets/fonts/MaterialIcons-Regular.eot') format('eot');
+//   src: url('../assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+//   src: url('../assets/fonts/MaterialIcons-Regular.woff') format('woff');
+//   src: url('../assets/fonts/MaterialIcons-Regular.woff2') format('woff2');
+// }
+// .material-icons {
+//   font-family: 'Material Icons';
+//   font-weight: normal;
+//   font-style: normal;
+//   font-size: 110%;
+//   line-height: 1;
+//   letter-spacing: normal;
+//   text-transform: none;
+//   display: inline-block;
+//   white-space: nowrap;
+//   word-wrap: normal;
+//   direction: ltr;
+//   -webkit-font-feature-settings: 'liga';
+//   -webkit-font-smoothing: antialiased;
+//   vertical-align: sub;
+//   /* Support for all WebKit browsers. */
+//   -webkit-font-smoothing: antialiased;
+//   /* Support for Safari and Chrome. */
+//   text-rendering: optimizeLegibility;
+//   /* Support for Firefox. */
+//   -moz-osx-font-smoothing: grayscale;
+//   /* Support for IE. */
+//   font-feature-settings: 'liga';
+// }
 
 
 h1 {

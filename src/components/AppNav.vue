@@ -126,6 +126,9 @@ export default {
 
 <style scoped lang="scss">
 
+@import '../assets/css/material-icons.scss';
+
+
 // .fade-enter-active, .fade-leave-active {
 //   opacity: 0;
 //   transition: all 3000ms; 

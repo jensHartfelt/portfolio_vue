@@ -173,6 +173,9 @@ export default {
 
 <style scoped lang="scss">
 
+@import '../assets/css/material-icons.scss';
+
+
 @media (min-width: 700px) {
   .section {
     text-align: left;
