@@ -52,6 +52,24 @@ img {
   width: 100%;
 }
 
+.image-container {
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-top: -15px;
+  position: relative;
+  padding-bottom: 63.1510416667%; /* ratio of image height to width */
+  height: 0;
+  overflow: hidden;
+  background-color: #e1e1e1; 
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 
 /* SPINNER */
 /* Spinner loader */
@@ -95,6 +113,28 @@ $transition-slow: 600ms ease;
 $transition-medium: 400ms ease;
 $transition-fast: 200ms ease;
 $transition-extra-fast: 120ms ease;
+
+.forwards-enter,
+.forwards-enter-to,
+.forwards-leave-to,
+.forwards-leave,
+.backwards-enter,
+.backwards-enter-to,
+.backwards-leave-to,
+.backwards-leave {
+  transition: transform $transition-medium, opacity $transition-fast;
+}
+
+.forwards-enter    {transform: translate3d(75px,0,0); opacity: 0;}
+.forwards-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
+.forwards-leave-to {transform: translate3d(-150px,0,0); opacity: 0;}
+.forwards-leave    {transform: translate3d(0%,0,0);}
+
+.backwards-enter    {transform: translate3d(-75px,0,0); opacity: 0;}
+.backwards-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
+.backwards-leave-to {transform: translate3d(150px,0,0); opacity: 0;}
+.backwards-leave    {transform: translate3d(0%,0,0);}
+
 
 
 

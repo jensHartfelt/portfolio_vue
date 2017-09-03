@@ -13,7 +13,7 @@
 
     <!-- Content -->
     <transition 
-    :name="transitionMode" 
+    :name="this.$store.state.transitionMode" 
     mode="out-in"
     @enter="scroll">
       <router-view appear>    
@@ -26,11 +26,6 @@
 <script>
 export default {
   name: 'app',
-  data () {
-    return {
-      transitionMode: ""
-    }
-  },
   methods: {
     scroll: function () {
       if (this.$route.name === "Portfolio") {
@@ -52,9 +47,10 @@ export default {
       // Sets transition mode based on flow.
       // Will work if there is only 2 "nested" layers of views
       if (to.name === "Overview") {
-        this.transitionMode = "backwards";
+        this.$store.commit('setTransitionModeBackwards')
+
       } else {
-        this.transitionMode = "forward"
+        this.$store.commit('setTransitionModeForwards')
       }
 
       if (from.name === "Overview") {
@@ -72,26 +68,7 @@ export default {
 //@import 'assets/css/material-icons.scss';
 @import 'assets/css/common-style.scss';
 
-.forward-enter,
-.forward-enter-to,
-.forward-leave-to,
-.forward-leave,
-.backwards-enter,
-.backwards-enter-to,
-.backwards-leave-to,
-.backwards-leave {
-  transition: all $transition-medium;
-}
 
-.forward-enter    {transform: translate3d(100%,0,0); opacity: 0;}
-.forward-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
-.forward-leave-to {transform: translate3d(-50%,0,0); opacity: 0;}
-.forward-leave    {transform: translate3d(0%,0,0);}
-
-.backwards-enter    {transform: translate3d(-100%,0,0); opacity: 0;}
-.backwards-enter-to {transform: translate3d(0%,0,0); opacity: 1;}
-.backwards-leave-to {transform: translate3d(50%,0,0); opacity: 0;}
-.backwards-leave    {transform: translate3d(0%,0,0);}
 
 
 

@@ -11,9 +11,20 @@
     <div v-if="pageIsReady" class="container">
       <div class="single-element u_m-b-xxl" v-for="(post, key) in posts" :key="key">
 
-        <div class="u_p-sm u_m-b-xl box">
-          <img class="u_m-b-xs" :src="post.acf.image.url">
-          <p class="meta">{{post.acf.imageDescription}}</p>
+        <!-- Image -->
+        <div class="image-container u_m-b-xl">
+          <img 
+            :srcset="
+              post.acf.image.sizes.thumbnail+' 150w,'+
+              post.acf.image.sizes.medium+' 300w,'+
+              post.acf.image.sizes.medium_large+' 768w,'+
+              post.acf.image.sizes.large+' 1024w'"
+            sizes="
+              (min-width: 360px) 768px,
+              (min-width: 300px) 300px,
+              150px"
+            :src="post.acf.image.sizes.medium_large"
+          >
         </div>
 
         <h1 class="u_m-b-md">{{post.acf.title}}</h1>
@@ -170,8 +181,24 @@ p.meta {
   border-radius: 3px;
 }*/
 
-img {
-  border-radius: 2px;
+  img {
+    border-radius: 2px;
+  }
+.image-container {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+}
+@media (max-width: 700px) {
+  img {
+    border-radius: 0px;
+  }
+  .image-container {
+    margin-left: -5%;
+    margin-right: -5%;
+    margin-top: -30px;
+  }
+  
 }
 
  .button {

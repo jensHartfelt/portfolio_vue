@@ -2,7 +2,10 @@
   <div class="nav-container">
     <div class="nav-content">
 
-      <transition name="fade" mode="out-in">        
+      <transition 
+        :name="this.$store.state.transitionMode" 
+        mode="out-in"
+      >        
         <div v-if="atOverview" class="container overview">
           <p @click="scrollTo('top')" class="title">JENS HARTFELT</p>
           <div class="navigation">
@@ -178,16 +181,16 @@ export default {
   overflow: hidden;
 }
 
-.nav-container .container.overview {
-  margin-top: 0px;
-  opacity: 1;
-  transition: all 400ms ease-in-out;
-}
-.nav-container .container.overview.hidden {
-  margin-top: -50px;
-  opacity: 0;
-  transition: all 400ms ease-in-out;
-}
+// .nav-container .container.overview {
+//   margin-top: 0px;
+//   opacity: 1;
+//   transition: all 400ms ease-in-out;
+// }
+// .nav-container .container.overview.hidden {
+//   margin-top: -50px;
+//   opacity: 0;
+//   transition: all 400ms ease-in-out;
+// }
 
 .nav-container .container {
   display: flex;

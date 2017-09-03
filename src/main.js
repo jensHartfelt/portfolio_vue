@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+require('es6-promise/auto');
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -17,7 +18,8 @@ const store = new Vuex.Store({
   state: {
     posts: [],
     spinnerActive: true,
-    overviewScrollY: 0
+    overviewScrollY: 0,
+    transitionMode: "forwards"
   },
   mutations: {
     getPosts (state) {
@@ -31,6 +33,14 @@ const store = new Vuex.Store({
       .catch(function (err) {
         console.log(err)
       })
+    },
+    setTransitionModeForwards (state) {
+      console.log(state);
+      state.transitionMode = "forwards";
+    },
+    setTransitionModeBackwards (state) {
+      console.log(state);
+      state.transitionMode = "backwards";
     }
   }
 })

@@ -355,24 +355,6 @@ export default {
 
 }
 
-.image-container {
-  margin-right: -15px;
-  margin-left: -15px;
-  margin-top: -15px;
-  position: relative;
-  padding-bottom: 63.1510416667%; /* ratio of image height to width */
-  height: 0;
-  overflow: hidden;
-  background-color: #e1e1e1; 
-}
-
-.image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
 .category {
   color: #777;
 }
