@@ -166,8 +166,8 @@ p {
     border-radius: 0px;
   }
   .image-container {
-    margin-left: -5%;
-    margin-right: -5%;
+    margin-left: -4%;
+    margin-right: -4%;
   }
   
 }
