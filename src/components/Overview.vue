@@ -101,7 +101,7 @@
 
         <p class="u_m-b-lg">Jeg er altid åben overfor nye projekter og muligheder, send en mail til:</p>
         <a href="mailto:mail@jenshartfelt.dk" class="button full-width xl"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
-        <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="" class="bold">Codepen.</a></p>
+        <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="https://www.linkedin.com/in/jens-hartfelt-084b61112/" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="https://codepen.io/JensHartfelt/" class="bold">Codepen.</a></p>
         <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se den <a class="bold" href="">på github</a>.</p>
 
       </div>
