@@ -6,14 +6,40 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import "vue-material-design-icons/styles.css"
 
+// Icons
+import arrowRight from "vue-material-design-icons/arrow-right.vue"
+import brush from "vue-material-design-icons/brush.vue"
+import calendarRange from "vue-material-design-icons/calendar-range.vue"
+import camcorder from "vue-material-design-icons/camcorder.vue"
+import chevronLeft from "vue-material-design-icons/chevron-left.vue"
+import crop from "vue-material-design-icons/crop.vue"
+import cellphoneLink from "vue-material-design-icons/cellphone-link.vue"
+import emailOutline from "vue-material-design-icons/email-outline.vue"
+import gamepadVariant from "vue-material-design-icons/gamepad-variant.vue"
+import gesture from "vue-material-design-icons/gesture.vue"
+import openInNew from "vue-material-design-icons/open-in-new.vue"
+
+Vue.component("arrow-right", arrowRight)
+Vue.component("brush", brush)
+Vue.component("calendar-range", calendarRange)
+Vue.component("camcorder", camcorder)
+Vue.component("chevron-left", chevronLeft)
+Vue.component("crop", crop)
+Vue.component("cellphone-link", cellphoneLink)
+Vue.component("email-outline", emailOutline)
+Vue.component("gamepad-variant", gamepadVariant)
+Vue.component("gesture", gesture)
+Vue.component("openInNew", openInNew)
+
+// Compontens 
 import AppNav from './components/AppNav'
 Vue.component('app-nav', AppNav)
-
 Vue.config.productionTip = false
 
+/* Vuex */
 Vue.use(Vuex)
-
 const store = new Vuex.Store({
   state: {
     posts: [],

@@ -17,7 +17,7 @@
     <div class="container-fluid u_p-t-xl u_p-b-xl" id="portfolio">
       <div class="container">
         <!-- Posts -->
-        <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1>
+        <!-- <h1 class="u_m-b-xl u_p-t-md u_t-c">Portfolio</h1> -->
         <div class="columns-container u_m-b-xl">
 
           <div v-if="this.$store.state.spinnerActive" class="u_t-c spinner-container" :class="{active : this.$store.state.spinnerActive}">
@@ -69,10 +69,14 @@
               </div>
 
               <!-- Category -->
-              <p class="category u_m-b-md"> 
-                <i class="material-icons">
-                  {{getCategoryIcon(post.acf.category)}}
-                </i> 
+              <p class="category u_m-b-md">
+                <brush v-if="post.acf.category === 'Grafisk design'"/>
+                <camcorder v-if="post.acf.category === 'Film'"/>
+                <camcorder v-if="post.acf.category === 'Animationsfilm'"/>
+                <cellphone-link v-if="post.acf.category === 'Hjemmeside'" />
+                <gamepad-variant v-if="post.acf.category === 'Spil'"/>
+                <gesture v-if="post.acf.category === 'Animation'"/>
+                
                 {{post.acf.category}}
               </p>
 
@@ -84,9 +88,10 @@
               
               <!-- Action -->
               <router-link  
-                :to="{ name: 'Portfolio', params: { id: post.id }}" 
-                class="button">Læs mere
-              <i class="material-icons">arrow_forward</i>
+              :to="{ name: 'Portfolio', params: { id: post.id }}" 
+              class="button">
+                Læs mere
+                <arrow-right />
               </router-link>
           </div>
         </div>
@@ -94,14 +99,17 @@
     </div>
 
     <div class="section u_p-t-xl" id="contact">
-      <h1 class="u_p-t-md u_t-c">Kontakt</h1>
+      <!-- <h1 class="u_p-t-md u_t-c">Kontakt</h1> -->
 
       <div class="content">
 
         <p class="u_m-b-lg">Jeg er altid åben overfor nye projekter og muligheder, send en mail til:</p>
-        <a href="mailto:mail@jenshartfelt.dk" class="button full-width xl"><i class="material-icons">mail_outline</i> mail@jenshartfelt.dk</a>
-        <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="https://www.linkedin.com/in/jens-hartfelt-084b61112/" class="bold">linkedIn profil</a> eller nogle flere af mine projekter på <a href="https://codepen.io/JensHartfelt/" class="bold">Codepen.</a></p>
-        <p>Dette website er udviklet med <a href="" class="bold">vue.js</a>, <a href="" class="bold">vue-router</a>, <a href="" class="bold">vuex</a>, <a href="" class="bold">axios</a>, <a href="" class="bold">TinyAnimate</a>, <a href="" class="bold">webpack</a>, <a href="" class="bold">git</a> og <a href="" class="bold">wordpress</a>. Hvis du vil se kildekoden kan du se den <a class="bold" href="">på github</a>.</p>
+        <a href="mailto:mail@jenshartfelt.dk" class="button full-width xl contact-button"><email-outline />mail@jenshartfelt.dk</a>
+        <p class="u_p-t-xl u_m-b-md">Hvis du vil vide mere om mig, kan du se min <a href="https://www.linkedin.com/in/jens-hartfelt-084b61112/" class="bold">linkedIn profil</a>, nogle flere af mine projekter på <a href="https://codepen.io/JensHartfelt/" class="bold">Codepen</a> eller min <a href="https://github.com/jensHartfelt/" class="bold">github-profil</a></p>
+       
+       
+        <p>Dette website er udviklet med <a href="https://vuejs.org/" class="bold">vue.js</a>. Hvis du vil se kildekoden kan du se den <a class="bold" href="https://github.com/jensHartfelt/portfolio_vue/">på github</a>.</p>
+        
 
       </div>
       
@@ -139,41 +147,13 @@ export default {
       function apply(e) {
         window.scrollTo(0, e);
       }
-    },
-    getCategoryIcon: function(category) {
-      switch (category) {
-        case "Hjemmeside": 
-          return "devices";
-
-        case "Film": 
-          return "videocam";
-
-        case "Animationsfilm": 
-          return "videocam";
-
-        case "Spil": 
-          return "games";
-
-        case "Grafisk design": 
-          return "brush";
-          
-        case "Animation": 
-          return "transform";
-          
-        default: 
-          return "broken_image";
-      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
-@import '../assets/css/material-icons.scss';
 @import '../assets/css/_vars';
-
-// @import '../assets/css/common-style.scss';
 
 
 @media (min-width: 700px) {
@@ -181,7 +161,7 @@ export default {
     text-align: left;
   }
   .section p {
-    font-size: 24px;
+    font-size: 1.25rem;
     hyphens: auto;
   }
 }
@@ -190,12 +170,38 @@ export default {
     text-align: left;
   }  
   .section p {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 .section.landingpage {
   min-height: 100vh;
+  animation: enter 500ms ease forwards;
+
+  p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .bold {
+    font-family: 'Barlow', sans-serif;
+    margin-top: -.4rem;
+  }
+}
+
+@keyframes enter {
+  0%   {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+
+  }
+  
 }
 
 .section {
@@ -208,7 +214,7 @@ export default {
 }
 
 .section .content {
-  padding: 100px 20px;
+  padding: 80px 20px 100px 20px;
   max-width: 600px;
 }
 
@@ -226,10 +232,10 @@ export default {
 }
 
 .section a.bold {
-    border-width: 0 0 1px 0;
-    border-color: $blue-primary;
-    border-style: dashed;
-    text-decoration: none;
+  border-width: 0 0 1px 0;
+  border-color: $blue-primary;
+  border-style: dashed;
+  text-decoration: none;
 }
 
 
@@ -240,20 +246,12 @@ export default {
   background-color: $blue-primary;
   display: inline-block;
   width: auto;
-  padding: 13px 42px;
+  padding: .6rem 2rem .7rem 2rem;
   cursor: pointer;
   border-radius: 3px;
   color: $white;
   font-weight: 400;
   font-size: 20px;
-}
-
-.section .button.xl {
-  font-size: 24px;
-}
-
-.section .button.full-width {
-  width: 100%;
 }
 
 @media (max-width: 374px) {
@@ -285,27 +283,16 @@ export default {
 
 }
 
-.portfolio-element h1 {
-  font-size: 1.5em;
-}
-
-
-
-
-
-
-
-
-
-
 .portfolio-element {
   display: inline-block;
   width: 100%;
   margin: 2% 0;
   vertical-align: top;
   min-height: 100%;
-  overflow: hidden;
-  position: relative
+  position: relative;
+  h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .seperator {
@@ -319,14 +306,15 @@ export default {
 
 .category {
   color: $grey;
-}
-.category i {
-  font-size: 18px;
-  vertical-align: sub;
+
+  .material-design-icon {
+    fill: $grey;
+    margin-right: .25rem;
+  }
 }
 
 .button {
-  padding: 8px 4px;
+  padding: 2px 4px;
   text-decoration: none;
   font-weight: 700;
   color: $blue-primary;
@@ -335,20 +323,36 @@ export default {
   display: block;
   margin: -8px 0;
   text-align: right;
-}
-.button i {
-  vertical-align: sub;
-  margin-right: 8px;
-  transition: margin 200ms ease;
-}
-.button:hover,
-a:hover {
-  opacity: 0.7; 
-}
-.portfolio-element .button:hover>i {
-  margin-right: -6px;
-  margin-left: 6px;
-  transition: margin 200ms ease;
+  .material-design-icon {
+    fill: $blue-primary;
+    margin-right: 8px;
+    transition: margin 200ms ease;
+  }
+
+  &:hover {
+    opacity: 0.7; 
+    .material-design-icon {
+      margin-right: -6px;
+      margin-left: 6px;
+      transition: margin 200ms ease;
+    }
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.contact-button {
+    .material-design-icon {
+      fill: $white;
+    }
+
+    &:hover .material-design-icon {
+      margin-right: 8px;
+      margin-left: 0;
+    }
+  }
+
 }
 
 p.footer {
@@ -356,15 +360,7 @@ p.footer {
   opacity: 0.6;
 }
 
-/*.button {
-  display: block;
-  padding: 8px 16px;
-  border: 2px #333 solid;
-  color: #fff;
-  background-color: #333;
-  border-radius: 3px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1.4em;
-}*/
+
+
+
 </style>
