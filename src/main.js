@@ -35,11 +35,11 @@ const store = new Vuex.Store({
       })
     },
     setTransitionModeForwards (state) {
-      console.log(state);
+      // console.log(state);
       state.transitionMode = "forwards";
     },
     setTransitionModeBackwards (state) {
-      console.log(state);
+      // console.log(state);
       state.transitionMode = "backwards";
     }
   }

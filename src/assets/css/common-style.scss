@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 
 /* COLOR */
+@import '_vars';
+
 
 // Light theme
-$white: #fff;
-$ultra-light-grey: #f2f2f3;
-$light-grey: #e1e1e1;
-$grey: #777;
-$off-black: #333;
-$blue-primary: #2C79E6;
+// $white: #fff;
+// $ultra-light-grey: #f2f2f3;
+// $light-grey: #e1e1e1;
+// $grey: #777;
+// $off-black: #333;
+// $blue-primary: #2C79E6;
 
 // Dark theme
 // $white: #000;
@@ -163,10 +165,10 @@ img {
 
 /* TRANSITIONT */
 
-$transition-slow: 500ms ease;
-$transition-medium: 190ms ease;
-$transition-fast: 150ms ease;
-$transition-extra-fast: 120ms ease;
+// $transition-slow: 500ms ease;
+// $transition-medium: 190ms ease;
+// $transition-fast: 150ms ease;
+// $transition-extra-fast: 120ms ease;
 
 .forwards-enter,
 .forwards-enter-to,

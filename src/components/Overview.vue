@@ -6,7 +6,6 @@
         <p class="intro u_m-b-xl">
           Hej! Mit navn er <span class="bold">Jens Hartfelt</span>
           Jeg brænder for frontendudvikling og webdesign. Lige nu arbejder jeg hos <a href="http://www.toecho.dk" target="blank" class="bold">To Echo</a> som frontendudvikler og læser <a href="http://www.kea.dk/en/programmes/top-up-bachelor-degree-ba-programmes/ba-in-web-development/" target="blank" class="bold">web development på KEA</a>. 
-
         </p>
         <div class="actions">
           <p @click="scrollTo('portfolio')" class="button u_m-b-md">Portfolio</p>
@@ -172,7 +171,9 @@ export default {
 <style scoped lang="scss">
 
 @import '../assets/css/material-icons.scss';
-@import '../assets/css/common-style.scss';
+@import '../assets/css/_vars';
+
+// @import '../assets/css/common-style.scss';
 
 
 @media (min-width: 700px) {
