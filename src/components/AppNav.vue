@@ -1,5 +1,5 @@
 <template>
-	<div class="nav-container">
+	<div class="nav-container" :class="{ hidden : !showNavBar }">
 		<transition 
 			:name="this.$store.state.transitionMode" 
 			mode="out-in"
@@ -14,7 +14,7 @@
 
 			<div v-else class="container portfolio back-button" :key="2">
 				<router-link :to="backButtonLocation" class="button u_c-blue">
-					<i class="material-icons u_c-blue">chevron_left</i>
+					<chevron-left />
 					Tilbage
 				</router-link>
 			</div>
@@ -34,11 +34,17 @@ export default {
 			atOverview: true,
 			backButtonLocation: "/",
 			portfolioActive: false,
-			contactActive: false
+			contactActive: false,
+			showNavBar: false
 		}
 	},
 	created() {
 		this.checkIfScrollHandleIsNeeded();
+		if (this.$router.history.current.name !== "Overview") {
+			console.log("Not at overview")
+			this.showNavBar = true;
+		}
+		console.log(this.$router)
 	},
 	updated() {
 		this.checkIfScrollHandleIsNeeded();
@@ -53,9 +59,16 @@ export default {
 			} 
 		},
 		handleScroll: function(e) {
-			var curScroll = e.target.body.scrollTop + 50;
+			// var curScroll = e.target.body.scrollTop + 50;
+			var curScroll = e.srcElement.scrollingElement.scrollTop + 50;
 			var portfolioOffset = document.getElementById("portfolio").offsetTop;
 			var contactOffset = document.getElementById("contact").offsetTop
+
+			if (curScroll > 50) {
+				this.showNavBar = true;
+			} else {
+				this.showNavBar = false;
+			}
 
 			if (curScroll > portfolioOffset && curScroll < contactOffset) {
 				this.portfolioActive = true;
@@ -104,13 +117,13 @@ export default {
 	},
 	watch: {
 		'$route' (to, from) {
-			console.log('Watching route in AppNav.vue. to.name: ',  to.name);
 			if (to.name === "Overview") {
 				this.atOverview = true;
 
 			} else if (to.name === "Portfolio")  {
 				window.removeEventListener('scroll', this.handleScroll);      
 				this.atOverview = false;
+				this.showNavBar = true;
 			}
 		}
 	}
@@ -118,10 +131,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../assets/css/material-icons.scss';
 @import '../assets/css/_vars';
-
-// @import '../assets/css/common-style.scss';
 
 .nav-container {
 	position: fixed;
@@ -132,6 +142,16 @@ export default {
 	border: $light-grey solid;
 	border-width: 0 0 1px 0;
 	z-index: 1;
+	transform: translateY(0px);
+	opacity: 1;
+	transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.nav-container.hidden {
+	
+	transform: translateY(10px);
+	opacity: 0;
+	transition: opacity 240ms ease, transform 240ms ease;
 }
 
 @media (min-width: 401px) {
@@ -154,13 +174,15 @@ export default {
 }
 
 .nav-container a {
-	border-width: 0 0 4px 0;
+	border-width: 0 0 2px 0;
 	border-style: solid;
 	border-color: rgba(0,0,0,0);
 	margin-top: 2px;
+	margin-bottom: -1px;
 	padding: 0 15px;
-	line-height: 44px;
+	line-height: 46px;
 	display: inline-block;
+	font-size: .9rem;
 }
 
 .nav-container a:hover {
@@ -171,12 +193,14 @@ export default {
 .nav-container a.active {
 	border-color: $blue-primary;
 	color: $blue-primary;
+	font-weight: 700;
 }
 
 .nav-container .title {
 	line-height: 50px;
 	font-weight: 700;
 	font-size: 1.1em;
+	font-family: 'Barlow', sans-serif;
 }
 
 .nav-container .title:hover {
@@ -184,14 +208,15 @@ export default {
 	cursor: pointer;
 }
 
-.back-button.container:hover i {
+.back-button.container:hover .material-design-icon {
 	transform: translateX(-5px);
 	transition: transform 240ms ease;
 }
 
-.back-button.container i {
+.back-button.container .material-design-icon {
+	fill: $blue-primary;
 	vertical-align: middle;
-	margin-bottom: 3px;
+	margin-bottom: -1px;
 	margin-left: -5px;
 	margin-right: 3px;
 	transition: transform 240ms ease;

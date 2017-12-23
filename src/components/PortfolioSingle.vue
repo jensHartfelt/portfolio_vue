@@ -11,19 +11,7 @@
     <div v-if="pageIsReady" class="container">
       <div class="single-element u_p-b-xxl" v-for="(post, key) in posts" :key="key">
 
-        <h1 class="u_m-b-md u_m-t-lg">{{post.acf.title}}</h1>
-
-        <div class="meta u_m-b-xl">
-          <p class="u_m-r-lg">
-            <i class="material-icons">date_range</i>
-            22. marts 2017
-          </p>
-          <p>
-            <i class="material-icons">crop</i>
-            Animation
-          </p>
-        </div>
-
+        <h1 class="u_m-b-xl u_m-t-xxl">{{post.acf.title}}</h1>
 
         <!-- Image -->
         <div class="image-container u_m-t-lg u_m-b-xl">
@@ -41,12 +29,19 @@
           >
         </div>
 
+        <!-- Meta -->
+        <div class="meta u_m-b-xl">
+          <p class="u_m-r-lg"><calendar-range />22. marts 2017</p>
+          <p><crop />Animation</p>
+        </div>
 
+        <!-- Lead and content -->
         <p class="lead u_m-b-md">{{post.acf.lead}}</p>
-        <p class="u_m-b-xl">{{post.acf.content}}</p>
+        <p class="u_m-b-xl" v-html="post.acf.content"></p>
 
+        <!-- Actions -->
         <a target="blank" :href="post.acf.externalLinkUrl" class="button u_p-b-xxl">
-          <i class="material-icons u_m-r-xs">open_in_new</i>
+          <openInNew />
           {{post.acf.externalLinkTitle}}
         </a>
         
@@ -70,7 +65,6 @@ export default {
     var postId = this.$router.currentRoute.params.id;
     var self = this;
 
-
     // If there are no posts in the store (which means you probably came straight to this page)
     // then go ahead and fetch the currently needed post
     if (this.$store.state.posts.length === 0) {
@@ -85,19 +79,6 @@ export default {
       self.posts.push(curPost[0]);
       this.pageIsReady = true;
     }
-
-
-
-    // function manuallyShowPost() {
-    //   var reqUrl = "http://jenshartfelt.dk/portfolio/wp-json/wp/v2/portfolioelement/" + postId + "/"
-    //   axios.get(reqUrl)
-    //   .then(function (res) {
-    //     self.posts.push(res.data);
-    //   })
-    //   .catch(function (err) {
-    //     console.log("There was an error.. Maybe try again?");
-    //   })
-    //}
   },
   methods: {
     manuallyShowPost: function(postId) {
@@ -117,14 +98,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
-// @import '../assets/css/common-style.scss';
 @import '../assets/css/_vars';
-@import '../assets/css/material-icons.scss';
 
 .base {
-  background-color: $ultra-light-grey;
 }
+
+h1 {
+  color: darken($grey, 10);
+  text-transform: uppercase;
+  color: $tinted-black;
+  // font-weight: 700;
+} 
 
 .lead {
   font-size: 1.5em;
@@ -140,6 +124,10 @@ p {
   font-size: 0.9em;
   color: $grey;
 
+  .material-design-icon {
+    fill: $grey;
+    transform: scale(0.75);
+  }
 }
 
 .container {
@@ -154,14 +142,15 @@ p {
   border-radius: 3px;
 }*/
 
-  img {
-    border-radius: 2px;
-  }
+img {
+  border-radius: 2px;
+}
 .image-container {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
 }
+
 @media (max-width: 700px) {
   img {
     border-radius: 0px;
@@ -187,6 +176,10 @@ p {
   font-weight: 400;
   font-size: 20px;
   text-decoration: none;
+
+  .material-design-icon {
+    fill: $white;
+  }
 }
 
 .button.outline {
